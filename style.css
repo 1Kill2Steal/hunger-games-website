@@ -25,6 +25,7 @@ header {
   animation: transitionIn 0.5s;
 }
 a {
+  color: inherit;
   transition: color 0.3s;
   animation: transitionIn 0.5s;
 }
