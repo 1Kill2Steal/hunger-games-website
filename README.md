@@ -4,4 +4,4 @@
 
 # VERY WORK IN PROGRESS
 
-### Hosted on: [Github Pages](https://1kill2steal.github.io/hunter-games-website/)
+### Hosted on: [Github Pages](https://1kill2steal.github.io/hunger-games-website/)
