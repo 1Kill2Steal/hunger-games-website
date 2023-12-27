@@ -11,12 +11,6 @@
   transform: translate(-50%, 50%);
   grid-column: 2;
 }
-.columnImg {
-  
-}
-.columnText {
-  
-}
 #participantsText {
   display: inline-grid;
   margin: auto;

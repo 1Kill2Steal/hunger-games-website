@@ -6,6 +6,30 @@
     height: auto;
   }
 }
+button {
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 2rem;
+  width: 20vmax;
+  height: 6vmax;
+  border-radius: 20px;
+  border-width: 0.3vmax;
+  border-style: solid;
+  border-color: #7cbbce;
+  font-style: italic;
+  opacity: 0.75;
+  transition: ease-in-out 0.3s;
+}
+button:hover {
+  animation: transitionIn;
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 1;
+  transition: ease-in-out 0.3s;
+}
+button::after {
+  height: 0px;
+  width: 0px;
+}
+
 .gameContainer {
   transition: all 0.75s ease-in-out;
   max-height: auto;
