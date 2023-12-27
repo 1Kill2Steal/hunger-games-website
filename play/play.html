@@ -10,6 +10,12 @@
 
     <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../subpage-style.css">
+
+    <!--Cool font imo-->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="play-style.css">
+    <script src="play-handling.js"></script>
   </head>
 
   <body>
@@ -20,14 +26,26 @@
         </h1>
     </header>
     
-    <div id="mainContents">
+    <div id="MainContents">
       <div class="contentItems" id="PlayButton" onclick="window.location.href = '../index.html';">
-      Play
+        Play
       </div>
-      <div class="description-box">
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur natus molestias perspiciatis accusamus quasi incidunt commodi repudiandae alias nemo doloremque id, fuga doloribus qui quia temporibus, exercitationem error nostrum laudantium!
-        </p>
+      <div class="descriptionBox" class="gameContainer">
+        <button type="button" onclick="displayText()" id="StartGame">Start</button>
+        <div class="gameObjects">
+          <p id="playLineOne"></p>
+        </div>
+        <div class="gameObjects">
+          <p id="playLineOne"></p>
+        </div>
+        <div class="gameObjects">
+          <p id="playLineOne"></p>
+        </div>
+        <div class="gameObjects">
+          <p id="playLineOne"></p>
+        </div>
+
+  
       </div>
     </div>
     

@@ -1,0 +1,18 @@
+@keyframes appearElement {
+  from {
+    height: auto;
+  }
+  to {
+    height: auto;
+  }
+}
+.gameContainer {
+  transition: all 0.75s ease-in-out;
+  max-height: auto;
+}
+
+.gameObjects {
+  height: 200px;
+  overflow: hidden;
+  transition: all 0.75s ease-in-out;
+}
