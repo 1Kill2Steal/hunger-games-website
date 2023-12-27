@@ -21,7 +21,7 @@ import {
 var surviors = participants.length;
 
 // you can say this is this websites version of int main() / __main__ / Main() - you get what i mean
-function startGame() {
+function startGame():number {
   try {
     console.log(daysIDs.length);
     console.log(nightsIDs.length);
@@ -86,5 +86,8 @@ function startGame() {
   } catch (e) {
     console.log(e);
   }
+  return 0;
 
 }
+
+export { startGame };
