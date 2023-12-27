@@ -1,9 +1,24 @@
 "use strict";
-// Author: 1Kill2Steal
-// Date: 27/12/2023 (DD/MM/YYYY)
+/*
+ *
+ *
+ *
+ *
+ *
+ * DATA PART
+ *
+ * Author: 1Kill2Steal
+ * Date: 27/12/2023 (DD/MM/YYYY)
+ * Making static websites is a fucking pain.
+ *
+ *
+ *
+ *
+ *
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.nightsIDs = exports.daysIDs = exports.participants = exports.randomizedElements = void 0;
-const randomizedElements = [
+exports.randomizedElements = [
     "lorem",
     "ipsum",
     "lorem",
@@ -46,8 +61,7 @@ const randomizedElements = [
     "ipsum",
     "YOU NEED SOME MOTIVATION!" // ehe.
 ];
-exports.randomizedElements = randomizedElements;
-const participants = [
+exports.participants = [
     "participant1",
     "participant2",
     "participant3",
@@ -99,8 +113,7 @@ const participants = [
     "participant49",
     "participant50",
 ];
-exports.participants = participants;
-const daysIDs = [
+exports.daysIDs = [
     "day1",
     "day2",
     "day3",
@@ -152,8 +165,7 @@ const daysIDs = [
     "day49",
     "day50",
 ];
-exports.daysIDs = daysIDs;
-const nightsIDs = [
+exports.nightsIDs = [
     "night1",
     "night2",
     "night3",
@@ -205,4 +217,3 @@ const nightsIDs = [
     "night49",
     "night50",
 ];
-exports.nightsIDs = nightsIDs;

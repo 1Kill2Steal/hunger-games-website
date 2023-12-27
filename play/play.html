@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="./play-style.css">
     <!--This webpage is hosted on github pages on my repository-->
     <!--If you're reading the code then head to the src/ folder and read the typescript files intead of these javascript ones-->
-    <script type="module" src="../dist/utils/functions.js"></script>
-    <script type="module" src="../dist/data/data.js"></script>
-    <script type="module" src="../dist/index.js"></script>
+    <script src="../dist/index.js"></script>
   </head>
 
   <body>
@@ -35,7 +33,7 @@
       <div class="contentItems" id="PlayButton" onclick="window.location.href = '../index.html';">
         Return
       </div>
-      <div class="descriptionBox" class="gameContainer">
+      <div class="descriptionBox gameContainer">
         <button type="button" onclick="startGame()" id="StartGame">Start</button>
         <div class="gameObjects">
           <div class="gameObjDay" id="day1">

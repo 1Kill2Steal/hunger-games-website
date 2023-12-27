@@ -1,6 +1,21 @@
 "use strict";
-// Author: 1Kill2Steal
-// Date: 27/12/2023 (DD/MM/YYYY)
+/*
+ *
+ *
+ *
+ *
+ *
+ * export FUNCTIONS PART
+ *
+ * Author: 1Kill2Steal
+ * Date: 27/12/2023 (DD/MM/YYYY)
+ * Making static websites is a fucking pain.
+ *
+ *
+ *
+ *
+ *
+ */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.setNightParagraphStyle = exports.setDayParagraphStyle = exports.determineIfKillingSomeoneOrDying = exports.getRandomElementFromArray = exports.getRandomNumber = void 0;
 // rand number between 1 and range (included)
