@@ -29,102 +29,58 @@
  * 
  */
 
-const randomizedElements = [
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",
-  "lorem",
-  "ipsum",  
-  "YOU NEED SOME MOTIVATION!" // ehe.
-]
-
-const participants = [
-  "participant1",
-  "participant2",
-  "participant3",
-  "participant4",
-  "participant5",
-  "participant6",
-  "participant7",
-  "participant8",
-  "participant9",
-  "participant10",
-  "participant11",
-  "participant12",
-  "participant13",
-  "participant14",
-  "participant15",
-  "participant16",
-  "participant17",
-  "participant18",
-  "participant19",
-  "participant20",
-  "participant21",
-  "participant22",
-  "participant23",
-  "participant24",
-  "participant25",
-  "participant26",
-  "participant27",
-  "participant28",
-  "participant29",
-  "participant30",
-  "participant31",
-  "participant32",
-  "participant33",
-  "participant34",
-  "participant35",
-  "participant36",
-  "participant37",
-  "participant38",
-  "participant39",
-  "participant40",
-  "participant41",
-  "participant42",
-  "participant43",
-  "participant44",
-  "participant45",
-  "participant46",
-  "participant47",
-  "participant48",
-  "participant49",
-  "participant50",
-]
+const participants = [ // "It's easier than it looks I swear." (I love you ChatGPT)
+  { id: "participant1", name: "rcweebs", state: true, image: "../images/participants/participant1.jpg" },
+  { id: "participant2", name: "NoPengoo", state: true, image: "../images/participants/participant2.png" },
+  { id: "participant3", name: "mqc", state: true, image: "../images/participants/participant3.jpg" },
+  { id: "participant4", name: "Coco", state: true, image: "../images/participants/participant4.jpg" },
+  { id: "participant5", name: "fishe", state: true, image: "../images/participants/participant5.png" },
+  { id: "participant6", name: "anato", state: true, image: "../images/participants/participant6.png" },
+  { id: "participant7", name: "Clip", state: true, image: "../images/participants/participant7.jpg" },
+  { id: "participant8", name: "1Kill2Steal", state: true, image: "../images/participants/participant8.jpg" },
+  { id: "participant9", name: "Dendi", state: true, image: "../images/participants/participant9.gif" },
+  { id: "participant10", name: "Dendro Simp", state: true, image: "../images/participants/participant10.jpg" },
+  { id: "participant11", name: "Emper", state: true, image: "../images/participants/participant11.png" },
+  { id: "participant12", name: "Gaming", state: true, image: "../images/participants/participant12.png" },
+  { id: "participant13", name: "Zaptros", state: true, image: "../images/participants/participant13.jpg" },
+  { id: "participant14", name: "Jecinb", state: true, image: "../images/participants/participant14.jpg" },
+  { id: "participant15", name: "Iodine", state: true, image: "../images/participants/participant15.jpg" },
+  { id: "participant16", name: "Yomi", state: true, image: "../images/participants/participant16.png" },
+  { id: "participant17", name: "Fu", state: true, image: "../images/participants/participant17.png" },
+  { id: "participant18", name: "EggMango", state: true, image: "../images/participants/participant18.png" },
+  { id: "participant19", name: "RPC", state: true, image: "../images/participants/participant19.png" },
+  { id: "participant20", name: "Kälhtzsteiss", state: true, image: "../images/participants/participant20.jpg" },
+  { id: "participant21", name: "Delka", state: true, image: "../images/participants/participant21.png" },
+  { id: "participant22", name: "Vertin", state: true, image: "../images/participants/participant22.jpg" },
+  { id: "participant23", name: "Furina de Fontaine", state: true, image: "../images/participants/participant23.jpg" },
+  { id: "participant24", name: "Aishira", state: true, image: "../images/participants/participant24.png" },
+  { id: "participant25", name: "Drag", state: true, image: "../images/participants/participant25.jpg" },
+  { id: "participant26", name: "BlueArmorDragon", state: true, image: "../images/participants/participant26.gif" },
+  { id: "participant27", name: "MrDoge", state: true, image: "../images/participants/participant27.gif" },
+  { id: "participant28", name: "AETHER", state: true, image: "../images/participants/participant28.jpg" },
+  { id: "participant29", name: "Chongus", state: true, image: "../images/participants/participant29.jpg" },
+  { id: "participant30", name: "Tokarev", state: true, image: "../images/participants/participant30.png" },
+  { id: "participant31", name: "Raouka", state: true, image: "../images/participants/participant31.jpg" },
+  { id: "participant32", name: "KTSUNE", state: true, image: "../images/participants/participant32.jpg" },
+  { id: "participant33", name: "Sorus", state: true, image: "../images/participants/participant33.gif" },
+  { id: "participant34", name: "chocofrog", state: true, image: "../images/participants/participant34.png" },
+  { id: "participant35", name: "Seb", state: true, image: "../images/participants/participant35.png" },
+  { id: "participant36", name: "Librari", state: true, image: "../images/participants/participant36.png" },
+  { id: "participant37", name: "Maike Taisan", state: true, image: "../images/participants/participant37.jpg" },
+  { id: "participant38", name: "Pengi", state: true, image: "../images/participants/participant38.gif" },
+  { id: "participant39", name: "Daikon", state: true, image: "../images/participants/participant39.jpg" },
+  { id: "participant40", name: "TechnoDragoVin", state: true, image: "../images/participants/participant40.png" },
+  { id: "participant41", name: "Aki", state: true, image: "../images/participants/participant41.png" },
+  { id: "participant42", name: "Cyber", state: true, image: "../images/participants/participant42.png" },
+  { id: "participant43", name: "Uyrem", state: true, image: "../images/participants/participant43.png" },
+  { id: "participant44", name: "Roll", state: true, image: "../images/participants/participant44.jpg" },
+  { id: "participant45", name: "ponoma", state: true, image: "../images/participants/participant45.png" },
+  { id: "participant46", name: "Hu Tao", state: true, image: "../images/participants/participant46.png" },
+  { id: "participant47", name: "cow", state: true, image: "../images/participants/participant47.png" },
+  { id: "participant48", name: "bonny", state: true, image: "../images/participants/participant48.png" },
+  { id: "participant49", name: "vons", state: true, image: "../images/participants/participant49.jpg" },
+  { id: "participant50", name: "Nick", state: true, image: "../images/participants/participant50.jpg" },
+];
 
 const daysIDs = [
   "day1",
@@ -278,19 +234,72 @@ function determineIfKillingSomeoneOrDying(killOrDie: Boolean) {
   }
 }
 
-function setDayParagraphStyle(element: HTMLParagraphElement): void {
-  element.textContent = "Day paragraph content";
-  element.style.color = "blue";
-  element.style.fontSize = "16px";
-  element.style.fontFamily = "Arial, sans-serif";
+function setDayGridStyle(
+  element: HTMLDivElement,
+  dayNumber: number,
+  target: number,
+  participantsRemaining:
+    { id: string;
+      name: string;
+      state: boolean;
+      image: string;
+    }[]
+  ): void {
+  element.innerHTML = `<p style="font-size: 25px; margin:0;">Day ${dayNumber}</p>`;
+
+  element.className = "dayGridBox";
+  element.id = `day${dayNumber}GridBox`;
+
+  
+  const miniAvatar = document.createElement("img");
+  miniAvatar.src = participantsRemaining[target].image;
+  miniAvatar.className = "miniAvatar";
+  miniAvatar.id = participantsRemaining[target].id;
+
+  const participantName = document.createElement("a");
+  participantName.className = "verticalCenter";
+  participantName.textContent = participantsRemaining[target].name;
+
+  const participantContainer = document.createElement("div");
+  participantContainer.appendChild(miniAvatar);
+  participantContainer.appendChild(participantName);
+  element.appendChild(participantContainer);
+ 
+
 }
 
-function setNightParagraphStyle(element: HTMLParagraphElement): void {
-  element.textContent = "Night paragraph content";
-  element.style.color = "red";
-  element.style.fontSize = "18px";
-  element.style.fontFamily = "Arial, sans-serif";
+function setNightGridStyle(
+  element: HTMLDivElement,
+  nightNumber: number,
+  target: number,
+  participantsRemaining:
+    { id: string;
+      name: string;
+      state: boolean;
+      image: string;
+    }[]
+): void {
+  element.innerHTML = `<p style="font-size: 25px; margin:0;">Night ${nightNumber}</p>`;
+
+  element.className = "nightGridBox";
+  element.id = `night${nightNumber}GridBox`;
+
+  const miniAvatar = document.createElement("img");
+  miniAvatar.src = participantsRemaining[target].image;
+  miniAvatar.className = "miniAvatar";
+  miniAvatar.id = participantsRemaining[target].id;
+
+  const participantName = document.createElement("a");
+  participantName.className = "verticalCenter";
+  participantName.textContent = participantsRemaining[target].name;
+
+  const participantContainer = document.createElement("div");
+  participantContainer.appendChild(miniAvatar);
+  participantContainer.appendChild(participantName);
+  element.appendChild(participantContainer);
 }
+
+
 
 /* 
  * 
@@ -313,49 +322,55 @@ function setNightParagraphStyle(element: HTMLParagraphElement): void {
 function startGame():number {
   /* GLOBAL VARIABLES */
   var surviors = participants.length;
-
+  var participantsCopy = participants.slice();
+  
 
   try {
     console.log(daysIDs.length);
     console.log(nightsIDs.length);
 
     // every 1 day+night cycle someone dies either during the day or during night time
-    for (var i = 0; i < surviors; i++) { 
-
+    for (var i = 0; i < nightsIDs.length-1; i++) {
+      var participantsIDs = participants.map(participantsCopy => participantsCopy.id);
+      
       var currDay = document.getElementById(daysIDs[i]);
       var currNight = document.getElementById(nightsIDs[i]);
-
+      
       // @ts-ignore - currDay shouldn't be null
-      var dayParagraphExists = currDay.querySelector('p') !== null;
+      var dayDivExists = currDay.querySelector('div') !== null;
       // @ts-ignore - currNight shouldn't be null
-      var nightParagraphExists = currNight.querySelector('p') !== null;
+      var nightDivExists = currNight.querySelector('div') !== null;
 
       var deathOnNightOrDay = Math.floor(Math.random() * getRandomNumber(2));
 
+      var result = -1;
+
+      if(deathOnNightOrDay == 1) {
+        var result:number = getRandomNumber(participantsCopy.length-1);
+      }
+      if (deathOnNightOrDay == 2) {
+        var result:number = getRandomNumber(participantsCopy.length-1);
+      }
+
       // initial creation
-      if (!nightParagraphExists && !dayParagraphExists) {
-        var newNightParagraph = document.createElement("p");
-        var newDayParagraph = document.createElement("p");
+      if (!nightDivExists && !dayDivExists) {
+        var newDayGridBox = document.createElement("div");
+        var newNightGridBox = document.createElement("div");
 
-        if(deathOnNightOrDay == 1) {
-
-        }
-        if (deathOnNightOrDay == 2) {
-
-        }
+        
         
         try {
-          setNightParagraphStyle(newNightParagraph);
+          setNightGridStyle(newNightGridBox, i+1, result, participantsCopy);
           // @ts-ignore - currNight shouldn't be null
-          currNight.appendChild(newNightParagraph);
+          currNight.appendChild(newnightDiv);
         } catch (e) {
           console.log(e);
         }
         
         try {
-          setDayParagraphStyle(newDayParagraph);
+          setDayGridStyle(newDayGridBox, i+1, result, participantsCopy);
           // @ts-ignore - it shouldn't be null
-          currDay.appendChild(newDayParagraph);
+          currDay.appendChild(newDayGridBox);
         } catch (e) {
           console.log(e);
         }
@@ -364,7 +379,7 @@ function startGame():number {
 
       }
 
-      if (dayParagraphExists && nightParagraphExists) {
+      if (dayDivExists && nightDivExists) {
 
         try { // @ts-ignore - currDay shouldn't be null
           currDay.querySelector('p').textContent = "Updated day paragraph content";

@@ -7,6 +7,7 @@
   }
 }
 button {
+  color: azure;
   background-color: rgba(0, 0, 0, 0.6);
   font-size: 2rem;
   width: 20vmax;
@@ -39,4 +40,35 @@ button::after {
   height: 200px;
   overflow: hidden;
   transition: all 0.75s ease-in-out;
+}
+
+.dayGridBox {
+  display: inline-grid;
+  margin: auto;
+  align-items: center;
+  grid-template-columns: auto;
+  font-size: 1.2rem;
+  padding: 20px 0;
+  text-align: left;
+}
+
+.nightGridBox {
+  display: inline-grid;
+  margin: auto;
+  align-items: center;
+  grid-template-columns: auto;
+  font-size: 1.2rem;
+  padding: 20px 0;
+  text-align: left;
+}
+
+.miniAvatar {
+  width: 40px;
+  padding-bottom: 10px;
+  grid-column: 1;
+  align-items: left;
+}
+
+.verticalCenter {
+  display: ruby-text-container;
 }
