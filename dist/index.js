@@ -905,7 +905,7 @@ function runGameCycle() {
     let participantsRemaining = participants.filter(participant => participant.state);
     for (let i = 0; i < nightsIDs.length + daysIDs.length; i++) {
         console.log(`Entering iteration ${i}`);
-        let killOrInteraction = getRandomNumber(5); // 2-4 = interaction (2,3,4) | the rest = kill
+        let killOrInteraction = getRandomNumber(0); // 2-4 = interaction (2,3,4) | the rest = kill
         let interactionParticipant; // since it can be Participant[] or just Participant
         if (killOrInteraction >= 2 && killOrInteraction <= 4) {
             if (participantsRemaining.length > 4 && killOrInteraction === 4) {
