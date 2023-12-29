@@ -344,21 +344,26 @@ for (let i = 1; i <= dayAndNightCounter; i++) {
 }
 // 2 participants interacting
 const twoParticipantsInteraction = [
-    "${participant1} asks ${participant2} for a date 👉👈",
-    "${participant1} decides to prank ${participant2}",
-    "${participant1} ditches ${participant2}",
+    "${participant1} asks ${participant2} for a date. 👉👈",
+    "${participant1} decides to prank ${participant2}.",
+    "${participant1} ditches ${participant2}.",
+    "${participant1} and ${participant2} cuddle for warmth.",
+    "${participant1} is chased by ${participant1}.",
+    "${participant1} and ${participant1} eat some funky mushrooms together.",
+    "${participant1} thinks about killing ${participant1} but decides against it.",
+    "${participant1} hits ${participant1} with a snowball",
 ];
 // 3 participants interacting
 const threeParticipantsInteraction = [
-    "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it)",
-    "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it)",
-    "${participant1} stops ${participant2} from beating the shit out of ${participant3}",
+    "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it).",
+    "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it).",
+    "${participant1} stops ${participant2} from beating the shit out of ${participant3}.",
 ];
 // 4 participants interacting
 const fourParticipantsInteraction = [
-    "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}",
-    "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}",
-    "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house",
+    "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}.",
+    "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}.",
+    "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
 ];
 // `${killer}${waysToKill[partOne]}${personDying}${waysToKill[partTwo]}`
 const killMessageTemplates = [
@@ -628,7 +633,7 @@ function determineIfKillingSomeoneOrDying() {
     }
 }
 function generateTwoParticipantsInteraction(dayOrNight, participant1, participant2) {
-    if (dayOrNight % 2 == 0) { // day
+    if (dayOrNight % 2 === 0) { // day
         console.log(`Processing day ${dayOrNight / 2 + 1}`);
         let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight / 2) - 1]);
         let dayDivExists = (currDay === null || currDay === void 0 ? void 0 : currDay.querySelector('div')) !== null;
@@ -666,7 +671,7 @@ function generateTwoParticipantsInteraction(dayOrNight, participant1, participan
     }
 }
 function generateThreeParticipantsInteraction(dayOrNight, participant1, participant2, participant3) {
-    if (dayOrNight % 2 == 0) { // day
+    if (dayOrNight % 2 === 0) { // day
         console.log(`Processing day ${dayOrNight / 2 + 1}`);
         let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight / 2) - 1]);
         let dayDivExists = (currDay === null || currDay === void 0 ? void 0 : currDay.querySelector('div')) !== null;
@@ -704,7 +709,7 @@ function generateThreeParticipantsInteraction(dayOrNight, participant1, particip
     }
 }
 function generateFourParticipantsInteraction(dayOrNight, participant1, participant2, participant3, participant4) {
-    if (dayOrNight % 2 == 0) { // day
+    if (dayOrNight % 2 === 0) { // day
         console.log(`Processing day ${dayOrNight / 2 + 1}`);
         let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight / 2) - 1]);
         let dayDivExists = (currDay === null || currDay === void 0 ? void 0 : currDay.querySelector('div')) !== null;
@@ -798,7 +803,7 @@ function setDayGridStyleWithKiller(element, dayNumber, deadParticipant, killer) 
     let miniAvatar = document.createElement("img");
     let secondAvatar;
     let participantName = document.createElement("a");
-    if (killer == deadParticipant) {
+    if (killer === deadParticipant) {
         miniAvatar.src = deadParticipant.image;
         miniAvatar.className = "miniAvatar";
         miniAvatar.id = deadParticipant.id;
@@ -831,7 +836,7 @@ function setNightStyleWithKiller(element, nightNumber, deadParticipant, killer) 
     let miniAvatar = document.createElement("img");
     let secondAvatar;
     let participantName = document.createElement("a");
-    if (killer == deadParticipant) {
+    if (killer === deadParticipant) {
         miniAvatar.src = deadParticipant.image;
         miniAvatar.className = "miniAvatar";
         miniAvatar.id = deadParticipant.id;
@@ -903,17 +908,17 @@ function runGameCycle() {
         let killOrInteraction = getRandomNumber(5); // 2-4 = interaction (2,3,4) | the rest = kill
         let interactionParticipant; // since it can be Participant[] or just Participant
         if (killOrInteraction >= 2 && killOrInteraction <= 4) {
-            if (participantsRemaining.length > 4 && killOrInteraction == 4) {
+            if (participantsRemaining.length > 4 && killOrInteraction === 4) {
                 interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
                 generateFourParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1], interactionParticipant[2], interactionParticipant[3]);
                 continue;
             }
-            else if (participantsRemaining.length > 3 && killOrInteraction == 3) {
+            else if (participantsRemaining.length > 3 && killOrInteraction === 3) {
                 interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
                 generateThreeParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1], interactionParticipant[2]);
                 continue;
             }
-            else if (participantsRemaining.length > 2 && killOrInteraction == 2) {
+            else if (participantsRemaining.length > 2 && killOrInteraction === 2) {
                 interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
                 generateTwoParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1]);
                 continue;
@@ -927,7 +932,7 @@ function runGameCycle() {
                 killer = getRandomElementFromArray(participantsRemaining);
             }
             participantsRemaining = participantsRemaining.filter(participant => participant !== randomDeadParticipant);
-            if (i % 2 == 0) {
+            if (i % 2 === 0) {
                 processDayInteractionWithKiller(Math.floor(i / 2) + 1, randomDeadParticipant, killer);
             }
             else {

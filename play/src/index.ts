@@ -695,7 +695,7 @@ function determineIfKillingSomeoneOrDying(): boolean {
   }
 }
 function generateTwoParticipantsInteraction(dayOrNight: number, participant1: Participant, participant2: Participant) {
-  if (dayOrNight % 2 == 0) { // day
+  if (dayOrNight % 2 === 0) { // day
     console.log(`Processing day ${dayOrNight/2+1}`);
     let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
     let dayDivExists = currDay?.querySelector('div') !== null;
@@ -728,7 +728,7 @@ function generateTwoParticipantsInteraction(dayOrNight: number, participant1: Pa
   }
 }
 function generateThreeParticipantsInteraction(dayOrNight: number, participant1: Participant, participant2: Participant, participant3: Participant) {
-  if (dayOrNight % 2 == 0) { // day
+  if (dayOrNight % 2 === 0) { // day
     console.log(`Processing day ${dayOrNight/2+1}`);
     let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
     let dayDivExists = currDay?.querySelector('div') !== null;
@@ -761,7 +761,7 @@ function generateThreeParticipantsInteraction(dayOrNight: number, participant1: 
   }
 }
 function generateFourParticipantsInteraction(dayOrNight: number, participant1: Participant, participant2: Participant, participant3: Participant, participant4: Participant) {
-  if (dayOrNight % 2 == 0) { // day
+  if (dayOrNight % 2 === 0) { // day
     console.log(`Processing day ${dayOrNight/2+1}`);
     let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
     let dayDivExists = currDay?.querySelector('div') !== null;
@@ -868,7 +868,7 @@ function setDayGridStyleWithKiller(
   let secondAvatar;
   let participantName = document.createElement("a");
 
-  if (killer == deadParticipant) {
+  if (killer === deadParticipant) {
     miniAvatar.src = deadParticipant.image;
     miniAvatar.className = "miniAvatar";
     miniAvatar.id = deadParticipant.id;
@@ -915,7 +915,7 @@ function setNightStyleWithKiller(
   let secondAvatar;
   let participantName = document.createElement("a");
 
-  if (killer == deadParticipant) {
+  if (killer === deadParticipant) {
     miniAvatar.src = deadParticipant.image;
     miniAvatar.className = "miniAvatar";
     miniAvatar.id = deadParticipant.id;
@@ -998,15 +998,15 @@ function runGameCycle() {
     let killOrInteraction = getRandomNumber(5); // 2-4 = interaction (2,3,4) | the rest = kill
     let interactionParticipant: Participant[]; // since it can be Participant[] or just Participant
     if (killOrInteraction >= 2 && killOrInteraction <= 4) {
-      if(participantsRemaining.length > 4 && killOrInteraction == 4) {
+      if(participantsRemaining.length > 4 && killOrInteraction === 4) {
         interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
         generateFourParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1], interactionParticipant[2], interactionParticipant[3]);
         continue;
-      } else if (participantsRemaining.length > 3 && killOrInteraction == 3) {
+      } else if (participantsRemaining.length > 3 && killOrInteraction === 3) {
         interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
         generateThreeParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1], interactionParticipant[2]);
         continue;
-      } else if (participantsRemaining.length > 2 && killOrInteraction == 2) {
+      } else if (participantsRemaining.length > 2 && killOrInteraction === 2) {
         interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
         generateTwoParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1]);
         continue;
@@ -1027,7 +1027,7 @@ function runGameCycle() {
       
       participantsRemaining = participantsRemaining.filter(participant => participant !== randomDeadParticipant);
 
-      if (i % 2 == 0) {  
+      if (i % 2 === 0) {  
         processDayInteractionWithKiller(Math.floor(i / 2) + 1, randomDeadParticipant, killer);
       } else {
         processNightInteractionWithKiller(Math.floor(i / 2) + 1, randomDeadParticipant, killer);
