@@ -77,6 +77,15 @@ button::after {
   border-color: green;
   margin-right: 0.5rem;
 }
+.miniAvatarInteraction {
+  width: 69px;
+  grid-column: 1;
+  align-items: left;
+  border-style: solid;
+  border-width: 0.3rem;
+  border-color: rgb(223, 223, 223);
+  margin-right: 0.5rem;
+}
 
 .verticalCenter {
   display: block;
