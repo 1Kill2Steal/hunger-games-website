@@ -29,60 +29,324 @@
  * 
  */
 
-const participants = [ // "It's easier than it looks I swear." (I love you ChatGPT)
-  { id: "participant1", name: "rcweebs", state: true, image: "../images/participants/participant1.jpg" },
-  { id: "participant2", name: "NoPengoo", state: true, image: "../images/participants/participant2.png" },
-  { id: "participant3", name: "mqc", state: true, image: "../images/participants/participant3.jpg" },
-  { id: "participant4", name: "Coco", state: true, image: "../images/participants/participant4.jpg" },
-  { id: "participant5", name: "fishe", state: true, image: "../images/participants/participant5.png" },
-  { id: "participant6", name: "anato", state: true, image: "../images/participants/participant6.png" },
-  { id: "participant7", name: "Clip", state: true, image: "../images/participants/participant7.jpg" },
-  { id: "participant8", name: "1Kill2Steal", state: true, image: "../images/participants/participant8.jpg" },
-  { id: "participant9", name: "Dendi", state: true, image: "../images/participants/participant9.gif" },
-  { id: "participant10", name: "Dendro Simp", state: true, image: "../images/participants/participant10.jpg" },
-  { id: "participant11", name: "Emper", state: true, image: "../images/participants/participant11.png" },
-  { id: "participant12", name: "Gaming", state: true, image: "../images/participants/participant12.png" },
-  { id: "participant13", name: "Zaptros", state: true, image: "../images/participants/participant13.jpg" },
-  { id: "participant14", name: "Jecinb", state: true, image: "../images/participants/participant14.jpg" },
-  { id: "participant15", name: "Iodine", state: true, image: "../images/participants/participant15.jpg" },
-  { id: "participant16", name: "Yomi", state: true, image: "../images/participants/participant16.png" },
-  { id: "participant17", name: "Fu", state: true, image: "../images/participants/participant17.png" },
-  { id: "participant18", name: "EggMango", state: true, image: "../images/participants/participant18.png" },
-  { id: "participant19", name: "RPC", state: true, image: "../images/participants/participant19.png" },
-  { id: "participant20", name: "Kälhtzsteiss", state: true, image: "../images/participants/participant20.jpg" },
-  { id: "participant21", name: "Delka", state: true, image: "../images/participants/participant21.png" },
-  { id: "participant22", name: "Vertin", state: true, image: "../images/participants/participant22.jpg" },
-  { id: "participant23", name: "Furina de Fontaine", state: true, image: "../images/participants/participant23.jpg" },
-  { id: "participant24", name: "Aishira", state: true, image: "../images/participants/participant24.png" },
-  { id: "participant25", name: "Drag", state: true, image: "../images/participants/participant25.jpg" },
-  { id: "participant26", name: "BlueArmorDragon", state: true, image: "../images/participants/participant26.gif" },
-  { id: "participant27", name: "MrDoge", state: true, image: "../images/participants/participant27.gif" },
-  { id: "participant28", name: "AETHER", state: true, image: "../images/participants/participant28.jpg" },
-  { id: "participant29", name: "Chongus", state: true, image: "../images/participants/participant29.jpg" },
-  { id: "participant30", name: "Tokarev", state: true, image: "../images/participants/participant30.png" },
-  { id: "participant31", name: "Raouka", state: true, image: "../images/participants/participant31.jpg" },
-  { id: "participant32", name: "KTSUNE", state: true, image: "../images/participants/participant32.jpg" },
-  { id: "participant33", name: "Sorus", state: true, image: "../images/participants/participant33.gif" },
-  { id: "participant34", name: "chocofrog", state: true, image: "../images/participants/participant34.png" },
-  { id: "participant35", name: "Seb", state: true, image: "../images/participants/participant35.png" },
-  { id: "participant36", name: "Librari", state: true, image: "../images/participants/participant36.png" },
-  { id: "participant37", name: "Maike Taisan", state: true, image: "../images/participants/participant37.jpg" },
-  { id: "participant38", name: "Pengi", state: true, image: "../images/participants/participant38.gif" },
-  { id: "participant39", name: "Daikon", state: true, image: "../images/participants/participant39.jpg" },
-  { id: "participant40", name: "TechnoDragoVin", state: true, image: "../images/participants/participant40.png" },
-  { id: "participant41", name: "Aki", state: true, image: "../images/participants/participant41.png" },
-  { id: "participant42", name: "Cyber", state: true, image: "../images/participants/participant42.png" },
-  { id: "participant43", name: "Uyrem", state: true, image: "../images/participants/participant43.png" },
-  { id: "participant44", name: "Roll", state: true, image: "../images/participants/participant44.jpg" },
-  { id: "participant45", name: "ponoma", state: true, image: "../images/participants/participant45.png" },
-  { id: "participant46", name: "Hu Tao", state: true, image: "../images/participants/participant46.png" },
-  { id: "participant47", name: "cow", state: true, image: "../images/participants/participant47.png" },
-  { id: "participant48", name: "bonny", state: true, image: "../images/participants/participant48.png" },
-  { id: "participant49", name: "vons", state: true, image: "../images/participants/participant49.jpg" },
-  { id: "participant50", name: "Nick", state: true, image: "../images/participants/participant50.jpg" },
+type Participant = {
+  id: string; 
+  name: string;
+  state: boolean;
+  image: string;
+};
+
+const participants: Participant[] = [ // "It's easier than it looks I swear." (I love you ChatGPT)
+  {
+    id: "participant1",
+    name: "rcweebs",
+    state: true,
+    image: "../images/participants/participant1.jpg"
+  },
+  {
+    id: "participant2",
+    name: "NoPengoo",
+    state: true,
+    image: "../images/participants/participant2.png"
+  },
+  {
+    id: "participant3",
+    name: "mqc",
+    state: true,
+    image: "../images/participants/participant3.jpg"
+  },
+  {
+    id: "participant4",
+    name: "Coco",
+    state: true,
+    image: "../images/participants/participant4.jpg"
+  },
+  {
+    id: "participant5",
+    name: "fishe",
+    state: true,
+    image: "../images/participants/participant5.png"
+  },
+  {
+    id: "participant6",
+    name: "anato",
+    state: true,
+    image: "../images/participants/participant6.png"
+  },
+  {
+    id: "participant7",
+    name: "Clip",
+    state: true,
+    image: "../images/participants/participant7.jpg"
+  },
+  {
+    id: "participant8",
+    name: "1Kill2Steal",
+    state: true,
+    image: "../images/participants/participant8.jpg"
+  },
+  {
+    id: "participant9",
+    name: "Dendi",
+    state: true,
+    image: "../images/participants/participant9.gif"
+  },
+  {
+    id: "participant10",
+    name: "Dendro Simp",
+    state: true,
+    image: "../images/participants/participant10.jpg"
+  },
+  {
+    id: "participant11",
+    name: "Emper",
+    state: true,
+    image: "../images/participants/participant11.png"
+  },
+  {
+    id: "participant12",
+    name: "Gaming",
+    state: true,
+    image: "../images/participants/participant12.png"
+  },
+  {
+    id: "participant13",
+    name: "Zaptros",
+    state: true,
+    image: "../images/participants/participant13.jpg"
+  },
+  {
+    id: "participant14",
+    name: "Jecinb",
+    state: true,
+    image: "../images/participants/participant14.jpg"
+  },
+  {
+    id: "participant15",
+    name: "Iodine",
+    state: true,
+    image: "../images/participants/participant15.jpg"
+  },
+  {
+    id: "participant16",
+    name: "Yomi",
+    state: true,
+    image: "../images/participants/participant16.png"
+  },
+  {
+    id: "participant17",
+    name: "Fu",
+    state: true,
+    image: "../images/participants/participant17.png"
+  },
+  {
+    id: "participant18",
+    name: "EggMango",
+    state: true,
+    image: "../images/participants/participant18.png"
+  },
+  {
+    id: "participant19",
+    name: "RPC",
+    state: true,
+    image: "../images/participants/participant19.png"
+  },
+  {
+    id: "participant20",
+    name: "Kälhtzsteiss",
+    state: true,
+    image: "../images/participants/participant20.jpg"
+  },
+  {
+    id: "participant21",
+    name: "Delka",
+    state: true,
+    image: "../images/participants/participant21.png"
+  },
+  {
+    id: "participant22",
+    name: "Vertin",
+    state: true,
+    image: "../images/participants/participant22.jpg"
+  },
+  {
+    id: "participant23",
+    name: "Furina de Fontaine",
+    state: true,
+    image: "../images/participants/participant23.jpg"
+  },
+  {
+    id: "participant24",
+    name: "Aishira",
+    state: true,
+    image: "../images/participants/participant24.png"
+  },
+  {
+    id: "participant25",
+    name: "Drag",
+    state: true,
+    image: "../images/participants/participant25.jpg"
+  },
+  {
+    id: "participant26",
+    name: "BlueArmorDragon",
+    state: true,
+    image: "../images/participants/participant26.gif"
+  },
+  {
+    id: "participant27",
+    name: "MrDoge",
+    state: true,
+    image: "../images/participants/participant27.gif"
+  },
+  {
+    id: "participant28",
+    name: "AETHER",
+    state: true,
+    image: "../images/participants/participant28.jpg"
+  },
+  {
+    id: "participant29",
+    name: "Chongus",
+    state: true,
+    image: "../images/participants/participant29.jpg"
+  },
+  {
+    id: "participant30",
+    name: "Tokarev",
+    state: true,
+    image: "../images/participants/participant30.png"
+  },
+  {
+    id: "participant31",
+    name: "Raouka",
+    state: true,
+    image: "../images/participants/participant31.jpg"
+  },
+  {
+    id: "participant32",
+    name: "KTSUNE",
+    state: true,
+    image: "../images/participants/participant32.jpg"
+  },
+  {
+    id: "participant33",
+    name: "Sorus",
+    state: true,
+    image: "../images/participants/participant33.gif"
+  },
+  {
+    id: "participant34",
+    name: "chocofrog",
+    state: true,
+    image: "../images/participants/participant34.png"
+  },
+  {
+    id: "participant35",
+    name: "Seb",
+    state: true,
+    image: "../images/participants/participant35.png"
+  },
+  {
+    id: "participant36",
+    name: "Librari",
+    state: true,
+    image: "../images/participants/participant36.png"
+  },
+  {
+    id: "participant37",
+    name: "Maike Taisan",
+    state: true,
+    image: "../images/participants/participant37.jpg"
+  },
+  {
+    id: "participant38",
+    name: "Pengi",
+    state: true,
+    image: "../images/participants/participant38.gif"
+  },
+  {
+    id: "participant39",
+    name: "Daikon",
+    state: true,
+    image: "../images/participants/participant39.jpg"
+  },
+  {
+    id: "participant40",
+    name: "TechnoDragoVin",
+    state: true,
+    image: "../images/participants/participant40.png"
+  },
+  {
+    id: "participant41",
+    name: "Aki",
+    state: true,
+    image: "../images/participants/participant41.png"
+  },
+  {
+    id: "participant42",
+    name: "Cyber",
+    state: true,
+    image: "../images/participants/participant42.png"
+  },
+  {
+    id: "participant43",
+    name: "Uyrem",
+    state: true,
+    image: "../images/participants/participant43.png"
+  },
+  {
+    id: "participant44",
+    name: "Roll",
+    state: true,
+    image: "../images/participants/participant44.jpg"
+  },
+  {
+    id: "participant45",
+    name: "ponoma",
+    state: true,
+    image: "../images/participants/participant45.png"
+  },
+  {
+    id: "participant46",
+    name: "Hu Tao",
+    state: true,
+    image: "../images/participants/participant46.png"
+  },
+  {
+    id: "participant47",
+    name: "cow",
+    state: true,
+    image: "../images/participants/participant47.png"
+  },
+  {
+    id: "participant48",
+    name: "bonny",
+    state: true,
+    image: "../images/participants/participant48.png"
+  },
+  {
+    id: "participant49",
+    name: "vons",
+    state: true,
+    image: "../images/participants/participant49.jpg"
+  },
+  {
+    id: "participant50",
+    name: "Nick",
+    state: true,
+    image: "../images/participants/participant50.jpg"
+  },
 ];
 
-const daysIDs = [
+const participantsMap = new Map<string, Participant>();
+
+participants.forEach((participant: Participant) => {
+  participantsMap.set(participant.id, participant);
+});
+
+
+const daysIDs: string[] = [
   "day1",
   "day2",
   "day3",
@@ -135,7 +399,7 @@ const daysIDs = [
   "day50",
 ]
 
-const nightsIDs = [
+const nightsIDs: string[] = [
   "night1",
   "night2",
   "night3",
@@ -188,6 +452,71 @@ const nightsIDs = [
   "night50",
 ]
 
+
+// `${killer}${waysToKill[partOne]}${personDying}${waysToKill[partTwo]}`
+
+type killMessage = {
+  killer: Participant;
+  personDying: Participant;
+  killString: string;
+};
+
+const waysToKill: killMessage[] = [
+    killString: `${killer.name} t-posed on ${personDying.name}.`,
+
+
+  {
+    partOne: " slapped ",
+    partTwo: " with a baguette.",
+  },
+  {
+    partOne: " hit the griddy on ",
+    partTwo: ".",
+  },
+  {
+    partOne: " gave some cheese to ",
+    partTwo: ".",
+  },
+  {
+    partOne: " played basketball with ",
+    partTwo: "'s head.",
+  },
+  {
+    partOne: " beat the shit out of ",
+    partTwo: "."
+  },
+  {
+    partOne: "",
+    partTwo: ""
+  },
+  {
+    partOne: "",
+    partTwo: ""
+  },
+  {
+    partOne: "",
+    partTwo: ""
+  },
+  {
+    partOne: "",
+    partTwo: ""
+  },
+  {
+    partOne: "",
+    partTwo: ""
+  },
+  {
+    partOne: "",
+    partTwo: ""
+  },
+  
+]
+
+// `${personDying} ${waysToDie[x]}`
+const waysToDie: string[] = [
+
+]
+
 /* 
  * 
  * 
@@ -212,7 +541,7 @@ function getRandomNumber(range: number) {
   return randomNumber;
 }
 
-function getRandomElementFromArray(array: string[]){
+function getRandomElementFromArray<T>(array: T[]): T {
   const randomIndex = Math.floor(Math.random() * array.length);
   const randomElement = array[randomIndex];
 
@@ -237,13 +566,7 @@ function determineIfKillingSomeoneOrDying(killOrDie: Boolean) {
 function setDayGridStyle(
   element: HTMLDivElement,
   dayNumber: number,
-  target: number,
-  participantsRemaining:
-    { id: string;
-      name: string;
-      state: boolean;
-      image: string;
-    }[]
+  participant: Participant
   ): void {
   element.innerHTML = `<p style="font-size: 25px; margin:0;">Day ${dayNumber}</p>`;
 
@@ -252,13 +575,13 @@ function setDayGridStyle(
 
   
   const miniAvatar = document.createElement("img");
-  miniAvatar.src = participantsRemaining[target].image;
+  miniAvatar.src = participant.image;
   miniAvatar.className = "miniAvatar";
-  miniAvatar.id = participantsRemaining[target].id;
+  miniAvatar.id = participant.id;
 
   const participantName = document.createElement("a");
   participantName.className = "verticalCenter";
-  participantName.textContent = participantsRemaining[target].name;
+  participantName.textContent = participant.name;
 
   const participantContainer = document.createElement("div");
   participantContainer.appendChild(miniAvatar);
@@ -271,13 +594,7 @@ function setDayGridStyle(
 function setNightGridStyle(
   element: HTMLDivElement,
   nightNumber: number,
-  target: number,
-  participantsRemaining:
-    { id: string;
-      name: string;
-      state: boolean;
-      image: string;
-    }[]
+  participant: Participant
 ): void {
   element.innerHTML = `<p style="font-size: 25px; margin:0;">Night ${nightNumber}</p>`;
 
@@ -285,13 +602,13 @@ function setNightGridStyle(
   element.id = `night${nightNumber}GridBox`;
 
   const miniAvatar = document.createElement("img");
-  miniAvatar.src = participantsRemaining[target].image;
+  miniAvatar.src = participant.image;
   miniAvatar.className = "miniAvatar";
-  miniAvatar.id = participantsRemaining[target].id;
+  miniAvatar.id = participant.id;
 
   const participantName = document.createElement("a");
   participantName.className = "verticalCenter";
-  participantName.textContent = participantsRemaining[target].name;
+  participantName.textContent = participant.name;
 
   const participantContainer = document.createElement("div");
   participantContainer.appendChild(miniAvatar);
@@ -322,8 +639,7 @@ function setNightGridStyle(
 function startGame():number {
   /* GLOBAL VARIABLES */
   var surviors = participants.length;
-  var participantsCopy = participants.slice();
-  
+  var participantsRemaining = participants.filter(participant => participant)
 
   try {
     console.log(daysIDs.length);
@@ -331,7 +647,8 @@ function startGame():number {
 
     // every 1 day+night cycle someone dies either during the day or during night time
     for (var i = 0; i < nightsIDs.length-1; i++) {
-      var participantsIDs = participants.map(participantsCopy => participantsCopy.id);
+      const randomDeadParticipant = getRandomElementFromArray(participantsRemaining);
+      var participantsRemaining = participantsRemaining.filter(participant => participant !== randomDeadParticipant)
       
       var currDay = document.getElementById(daysIDs[i]);
       var currNight = document.getElementById(nightsIDs[i]);
@@ -341,7 +658,7 @@ function startGame():number {
       // @ts-ignore - currNight shouldn't be null
       var nightDivExists = currNight.querySelector('div') !== null;
 
-      var deathOnNightOrDay = Math.floor(Math.random() * getRandomNumber(2));
+      var deathOnNightOrDay = getRandomNumber(2);
 
       var result = -1;
 
@@ -360,7 +677,7 @@ function startGame():number {
         
         
         try {
-          setNightGridStyle(newNightGridBox, i+1, result, participantsCopy);
+          setNightGridStyle(newNightGridBox, i+1, result, randomDeadParticipant);
           // @ts-ignore - currNight shouldn't be null
           currNight.appendChild(newnightDiv);
         } catch (e) {
