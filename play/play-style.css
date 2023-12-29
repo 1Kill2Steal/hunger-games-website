@@ -37,7 +37,6 @@ button::after {
 }
 
 .gameObjects {
-  height: 200px;
   overflow: hidden;
   transition: all 0.75s ease-in-out;
 }
@@ -49,7 +48,6 @@ button::after {
   grid-template-columns: auto;
   font-size: 1.2rem;
   padding: 20px 0;
-  text-align: left;
 }
 
 .nightGridBox {
@@ -59,16 +57,29 @@ button::after {
   grid-template-columns: auto;
   font-size: 1.2rem;
   padding: 20px 0;
-  text-align: left;
 }
 
 .miniAvatar {
-  width: 40px;
-  padding-bottom: 10px;
+  width: 69px;
   grid-column: 1;
   align-items: left;
+  border-style: solid;
+  border-width: 0.3rem;
+  border-color: rgb(128, 0, 0);
+  margin-left: 0.5rem;
+}
+.miniAvatarKiller {
+  width: 69px;
+  grid-column: 1;
+  align-items: left;
+  border-style: solid;
+  border-width: 0.3rem;
+  border-color: green;
+  margin-right: 0.5rem;
 }
 
 .verticalCenter {
-  display: ruby-text-container;
+  display: block;
+  width: 100%;
+  top: -40%;
 }
