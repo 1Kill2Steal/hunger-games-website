@@ -378,26 +378,30 @@ for (let i = 1; i <= dayAndNightCounter; i++) {
 // 2 participants interacting
 
 const twoParticipantsInteraction = [
-  "${participant1} asks ${participant2} for a date 👉👈",
-  "${participant1} decides to prank ${participant2}",
-  "${participant1} ditches ${participant2}",
-  "${participant1} and ${participant2} cuddle for warmth",
+  "${participant1} asks ${participant2} for a date. 👉👈",
+  "${participant1} decides to prank ${participant2}.",
+  "${participant1} ditches ${participant2}.",
+  "${participant1} and ${participant2} cuddle for warmth.",
+  "${participant1} is chased by ${participant1}.",
+  "${participant1} and ${participant1} eat some funky mushrooms together.",
+  "${participant1} thinks about killing ${participant1} but decides against it.",
+  "${participant1} hits ${participant1} with a snowball",
 ]
 
 // 3 participants interacting
 
 const threeParticipantsInteraction = [
-  "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it)",
-  "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it)",
-  "${participant1} stops ${participant2} from beating the shit out of ${participant3}",
+  "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it).",
+  "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it).",
+  "${participant1} stops ${participant2} from beating the shit out of ${participant3}.",
 ]
 
 // 4 participants interacting
 
 const fourParticipantsInteraction = [
-  "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}",
-  "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}",
-  "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house",
+  "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}.",
+  "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}.",
+  "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
 ]
 
 
