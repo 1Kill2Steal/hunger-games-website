@@ -269,10 +269,10 @@ const twoParticipantsInteraction = [
     "${participant1} decides to prank ${participant2}.",
     "${participant1} ditches ${participant2}.",
     "${participant1} and ${participant2} cuddle for warmth.",
-    "${participant1} is chased by ${participant1}.",
-    "${participant1} and ${participant1} eat some funky mushrooms together.",
-    "${participant1} thinks about killing ${participant1} but decides against it.",
-    "${participant1} hits ${participant1} with a snowball",
+    "${participant1} is chased by ${participant2}.",
+    "${participant1} and ${participant2} eat some funky mushrooms together.",
+    "${participant1} thinks about killing ${participant2} but decides against it.",
+    "${participant1} hits ${participant2} with a snowball",
 ];
 // 3 participants interacting
 const threeParticipantsInteraction = [
