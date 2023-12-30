@@ -277,6 +277,7 @@ const nightsIDs = [];
 for (let i = 1; i <= dayAndNightCounter; i++) {
     nightsIDs.push(`night${[i]}`);
 }
+const winner = "Winner";
 // Create DOM - same reason
 const gameObjectsContainer = document.querySelector('.gameContainer');
 for (let i = 1; i <= dayAndNightCounter; i++) {
@@ -292,6 +293,13 @@ for (let i = 1; i <= dayAndNightCounter; i++) {
     gameObjectsDiv.appendChild(nightElement);
     gameObjectsContainer === null || gameObjectsContainer === void 0 ? void 0 : gameObjectsContainer.appendChild(gameObjectsDiv);
 }
+const winnerElement = document.createElement('div');
+winnerElement.className = 'gameObjWinner';
+winnerElement.id = `winner`;
+const gameObjectsDiv = document.createElement('div');
+gameObjectsDiv.className = 'gameObjects';
+gameObjectsDiv.appendChild(winnerElement);
+gameObjectsContainer === null || gameObjectsContainer === void 0 ? void 0 : gameObjectsContainer.appendChild(gameObjectsDiv);
 // 2 participants interacting
 const twoParticipantsInteraction = [
     "${participant1} asks ${participant2} for a date. 👉👈",
@@ -488,7 +496,7 @@ const waysToDieTemplate = [
  *
  */
 // rand number between 1 and range (included)
-function getRandomNumber(range) {
+function getRandomNumberFromOneToArgumentIncluded(range) {
     const randomNumber = Math.floor(Math.random() * range) + 1;
     return randomNumber;
 }
@@ -497,20 +505,34 @@ function getRandomElementFromArray(array) {
     const randomElement = array[randomIndex];
     return randomElement;
 }
+// It's important that the random interacting people are unique array elements
+// Therefore we shuffle the sorting by using Math.random() and get the first
+// elements from the sorted array with slicing
 function getTwoUniqueRandomElementsFromArray(array) {
-    const shuffledArray = array.slice().sort(() => Math.random() - 0.5); // Shuffling the array
-    return shuffledArray.slice(0, 2); // Return the first two elements
+    const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, 2);
 }
 function getThreeUniqueRandomElementsFromArray(array) {
-    const shuffledArray = array.slice().sort(() => Math.random() - 0.5); // Shuffling the array
-    return shuffledArray.slice(0, 3); // Return the first three elements
+    const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, 3);
 }
 function getFourUniqueRandomElementsFromArray(array) {
-    const shuffledArray = array.slice().sort(() => Math.random() - 0.5); // Shuffling the array
-    return shuffledArray.slice(0, 4); // Return the first three elements
+    const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+    return shuffledArray.slice(0, 4);
 }
-function generateInteractionAvatars(participants, count) {
-    return participants.slice(0, count).map((participant) => {
+// Reusable functions
+function dayParagraphText(dayNumber) {
+    const result = `<p class="dayParagraph">Day ${dayNumber}</p>`;
+    return result;
+}
+function nightParagraphText(nightNumber) {
+    const result = `<p class="nightParagraph">Night ${nightNumber}</p>`;
+    return result;
+}
+// For modularity purpose the functions will take Participant[] and participantCount
+// Otherwise I'd repeat myself several times.
+function generateInteractionAvatars(participants, participantCount) {
+    return participants.slice(0, participantCount).map((participant) => {
         const miniAvatar = document.createElement("img");
         miniAvatar.src = participant.image;
         miniAvatar.className = "miniAvatarInteraction";
@@ -518,23 +540,32 @@ function generateInteractionAvatars(participants, count) {
         return miniAvatar;
     });
 }
+// This is again moved to a seperate function for modularity purpose,
+// because its reused in the day and night generation
+function determineInteractingUsersAvatarsGeneration(participant, participantCount) {
+    let miniAvatars = [];
+    switch (participantCount) {
+        case 4:
+            // 4 participant interaction
+            miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2], participant[3]], participantCount);
+            break;
+        case 3:
+            // 3 participant interaction
+            miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2]], participantCount);
+            break;
+        case 2:
+            // 2 participant interaction
+            miniAvatars = generateInteractionAvatars([participant[0], participant[1]], participantCount);
+            break;
+    }
+    return miniAvatars;
+}
+// Day interactions for the users interacting
 function setDayInteractionGrid(participant, participantCount, element, dayNumber) {
-    element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(231, 225, 143, 0.9); text-align: center;">Day ${dayNumber}</p>`;
+    element.innerHTML = dayParagraphText(dayNumber);
     element.className = "dayGridBox";
     element.id = `day${dayNumber}GridBox`;
-    let miniAvatars = [];
-    if (participantCount == 4) {
-        // 4 participant interaction
-        miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2], participant[3]], 4);
-    }
-    else if (participantCount == 3) {
-        // 3 participant interaction
-        miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2]], 3);
-    }
-    else {
-        // 2 participant interaction
-        miniAvatars = generateInteractionAvatars([participant[0], participant[1]], 2);
-    }
+    let miniAvatars = determineInteractingUsersAvatarsGeneration(participant, participantCount);
     const participantName = document.createElement("a");
     participantName.className = "verticalCenter";
     participantName.textContent = generateInteractionMessage(participant, participantCount);
@@ -543,23 +574,12 @@ function setDayInteractionGrid(participant, participantCount, element, dayNumber
     participantContainer.appendChild(participantName);
     element.appendChild(participantContainer);
 }
+// Night interactions for the users interacting
 function setNightInteractionGrid(participant, participantCount, element, nightNumber) {
-    element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(108, 163, 214, 0.9); text-align: center;">Night ${nightNumber}</p>`;
+    element.innerHTML = nightParagraphText(nightNumber);
     element.className = "nightGridBox";
     element.id = `night${nightNumber}GridBox`;
-    let miniAvatars = [];
-    if (participantCount == 4) {
-        // 4 participant interaction
-        miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2], participant[3]], 4);
-    }
-    else if (participantCount == 3) {
-        // 3 participant interaction
-        miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2]], 3);
-    }
-    else {
-        // 2 participant interaction
-        miniAvatars = generateInteractionAvatars([participant[0], participant[1]], 2);
-    }
+    let miniAvatars = determineInteractingUsersAvatarsGeneration(participant, participantCount);
     const participantName = document.createElement("a");
     participantName.className = "verticalCenter";
     participantName.textContent = generateInteractionMessage(participant, participantCount);
@@ -568,56 +588,95 @@ function setNightInteractionGrid(participant, participantCount, element, nightNu
     participantContainer.appendChild(participantName);
     element.appendChild(participantContainer);
 }
+function setUpDayInteraction(participant, participantCount, dayOrNight) {
+    console.log(`Processing day ${dayOrNight / 2 + 1}`);
+    let currDay = document.getElementById(daysIDs[dayOrNight / 2]);
+    let dayDivExists = (currDay === null || currDay === void 0 ? void 0 : currDay.querySelector('div')) !== null;
+    if (!dayDivExists) {
+        console.log(`Creating new day grid box`);
+        let newDayGridBox = document.createElement("div");
+        try {
+            setDayInteractionGrid(participant, participantCount, newDayGridBox, dayOrNight / 2 + 1);
+            if (currDay) {
+                currDay.appendChild(newDayGridBox);
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+}
+function setUpNightInteraction(participant, participantCount, dayOrNight) {
+    console.log(`Processing night ${Math.floor(dayOrNight / 2) + 1}`);
+    let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight / 2)]);
+    let nightDivExists = (currNight === null || currNight === void 0 ? void 0 : currNight.querySelector('div')) !== null;
+    if (!nightDivExists) {
+        console.log(`Creating new night grid box`);
+        let newNightGridBox = document.createElement("div");
+        try {
+            setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight / 2) + 1);
+            if (currNight) {
+                currNight.appendChild(newNightGridBox);
+            }
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+}
+function generateTwoToFourParticipantsInteraction(dayOrNight, participant, participantCount) {
+    if (dayOrNight % 2 == 0) { // day
+        setUpDayInteraction(participant, participantCount, dayOrNight);
+    }
+    else { // night
+        setUpNightInteraction(participant, participantCount, dayOrNight);
+    }
+}
+function generateInteractionMessage(participant, participantCount) {
+    let interactString;
+    switch (participantCount) {
+        case 4:
+            // 4 participant interaction
+            const fourParticipantsInteractionString = getRandomElementFromArray(fourParticipantsInteraction);
+            interactString = fourParticipantsInteractionString
+                .replace(/\${participant1}/g, participant[0].name)
+                .replace(/\${participant2}/g, participant[1].name)
+                .replace(/\${participant3}/g, participant[2].name)
+                .replace(/\${participant4}/g, participant[3].name);
+            break;
+        case 3:
+            // 3 participant interaction
+            const threeParticipantsInteractionString = getRandomElementFromArray(threeParticipantsInteraction);
+            interactString = threeParticipantsInteractionString
+                .replace(/\${participant1}/g, participant[0].name)
+                .replace(/\${participant2}/g, participant[1].name)
+                .replace(/\${participant3}/g, participant[2].name);
+            break;
+        case 2:
+            // 2 participant interaction
+            const twoParticipantsInteractionString = getRandomElementFromArray(twoParticipantsInteraction);
+            interactString = twoParticipantsInteractionString
+                .replace(/\${participant1}/g, participant[0].name)
+                .replace(/\${participant2}/g, participant[1].name);
+            break;
+    }
+    // return the randomly generated interaction message
+    // it shouldn't ever return undefined but in the case where it does, it's easily trackable
+    return interactString != undefined ? interactString : "Element \"InteractString\"in function generateInteractionMessage() is undefined";
+}
 // true = kill, false = die
+// This is the rng on whether you die on your own or kill someone else
 function determineIfKillingSomeoneOrDying() {
     let killOrDie;
-    // chanceToDie/(chanceToDie+chanceToKill) and vice versa
-    const chanceToKill = 420;
+    // 69/420 (funny) is around 0.164285714286% to die
     const chanceToDie = 69;
+    const chanceToKill = 420;
     const result = Math.random();
     if (result > chanceToDie / chanceToKill) {
         return killOrDie = true;
     }
     else {
         return killOrDie = false;
-    }
-}
-function generateTwoToFourParticipantsInteraction(dayOrNight, participant, participantCount) {
-    if (dayOrNight % 2 == 0) { // day
-        console.log(`Processing day ${dayOrNight / 2 + 1}`);
-        let currDay = document.getElementById(daysIDs[dayOrNight / 2]);
-        let dayDivExists = (currDay === null || currDay === void 0 ? void 0 : currDay.querySelector('div')) !== null;
-        if (!dayDivExists) {
-            console.log(`Creating new day grid box`);
-            let newDayGridBox = document.createElement("div");
-            try {
-                setDayInteractionGrid(participant, participantCount, newDayGridBox, dayOrNight / 2 + 1); // Too many similar functions otherwise
-                if (currDay) {
-                    currDay.appendChild(newDayGridBox);
-                }
-            }
-            catch (e) {
-                console.log(e);
-            }
-        }
-    }
-    else { // night
-        console.log(`Processing night ${Math.floor(dayOrNight / 2) + 1}`);
-        let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight / 2)]);
-        let nightDivExists = (currNight === null || currNight === void 0 ? void 0 : currNight.querySelector('div')) !== null;
-        if (!nightDivExists) {
-            console.log(`Creating new night grid box`);
-            let newNightGridBox = document.createElement("div");
-            try {
-                setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight / 2) + 1); // Too many similar functions otherwise
-                if (currNight) {
-                    currNight.appendChild(newNightGridBox);
-                }
-            }
-            catch (e) {
-                console.log(e);
-            }
-        }
     }
 }
 function generateRandomKillMessage(personDying, killer) {
@@ -639,61 +698,35 @@ function generateWayToDieMessage(personDying) {
     // return the randomly generated kill message
     return killString;
 }
-function generateInteractionMessage(participant, participantCount) {
-    // Randomly select a kill message template
-    let interactString;
-    if (participantCount === 4) {
-        // 4 participant interaction
-        const fourParticipantsInteractionString = getRandomElementFromArray(fourParticipantsInteraction);
-        interactString = fourParticipantsInteractionString
-            .replace(/\${participant1}/g, participant[0].name)
-            .replace(/\${participant2}/g, participant[1].name)
-            .replace(/\${participant3}/g, participant[2].name)
-            .replace(/\${participant4}/g, participant[3].name);
-    }
-    else if (participantCount == 3) {
-        // 3 participant interaction
-        const threeParticipantsInteractionString = getRandomElementFromArray(threeParticipantsInteraction);
-        interactString = threeParticipantsInteractionString
-            .replace(/\${participant1}/g, participant[0].name)
-            .replace(/\${participant2}/g, participant[1].name)
-            .replace(/\${participant3}/g, participant[2].name);
-    }
-    else {
-        // 2 participant interaction
-        const twoParticipantsInteractionString = getRandomElementFromArray(twoParticipantsInteraction);
-        interactString = twoParticipantsInteractionString
-            .replace(/\${participant1}/g, participant[0].name)
-            .replace(/\${participant2}/g, participant[1].name);
-    }
-    // Generate the killString by replacing placeholders with participant names
-    // return the randomly generated kill message
-    return interactString;
+function generateDeadParticipantAvatarAndText(miniAvatar, participantName, deadParticipant) {
+    miniAvatar.src = deadParticipant.image;
+    miniAvatar.className = "miniAvatarSoloDead";
+    miniAvatar.id = deadParticipant.id;
+    participantName.className = "verticalCenter";
+    participantName.textContent = generateWayToDieMessage(deadParticipant);
+}
+function generateKillerAndDeadParticipantAvatarAndText(miniAvatar, secondAvatar, participantName, deadParticipant, killer) {
+    miniAvatar.src = deadParticipant.image;
+    miniAvatar.className = "miniAvatar";
+    miniAvatar.id = deadParticipant.id;
+    secondAvatar.src = killer.image;
+    secondAvatar.className = "miniAvatarKiller";
+    secondAvatar.id = killer.id;
+    participantName.className = "verticalCenter";
+    participantName.textContent = generateRandomKillMessage(deadParticipant, killer);
 }
 function setDayGridStyleWithKiller(element, dayNumber, deadParticipant, killer) {
-    element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(231, 225, 143, 0.9); text-align: center;">Day ${dayNumber}</p>`;
+    element.innerHTML = dayParagraphText(dayNumber);
     element.className = "dayGridBox";
     element.id = `day${dayNumber}GridBox`;
     let miniAvatar = document.createElement("img");
-    let secondAvatar;
+    let secondAvatar = document.createElement("img");
     let participantName = document.createElement("a");
     if (killer === deadParticipant) {
-        miniAvatar.src = deadParticipant.image;
-        miniAvatar.className = "miniAvatar";
-        miniAvatar.id = deadParticipant.id;
-        participantName.className = "verticalCenter";
-        participantName.textContent = generateWayToDieMessage(deadParticipant);
+        generateDeadParticipantAvatarAndText(miniAvatar, participantName, deadParticipant);
     }
     else {
-        miniAvatar.src = deadParticipant.image;
-        miniAvatar.className = "miniAvatar";
-        miniAvatar.id = deadParticipant.id;
-        secondAvatar = document.createElement("img");
-        secondAvatar.src = killer.image;
-        secondAvatar.className = "miniAvatarKiller";
-        secondAvatar.id = killer.id;
-        participantName.className = "verticalCenter";
-        participantName.textContent = generateRandomKillMessage(deadParticipant, killer);
+        generateKillerAndDeadParticipantAvatarAndText(miniAvatar, secondAvatar, participantName, deadParticipant, killer);
     }
     const participantContainer = document.createElement("div");
     if (secondAvatar) {
@@ -704,7 +737,7 @@ function setDayGridStyleWithKiller(element, dayNumber, deadParticipant, killer) 
     element.appendChild(participantContainer);
 }
 function setNightStyleWithKiller(element, nightNumber, deadParticipant, killer) {
-    element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(108, 163, 214, 0.9); text-align: center;">Night ${nightNumber}</p>`;
+    element.innerHTML = nightParagraphText(nightNumber);
     element.className = "nightGridBox";
     element.id = `night${nightNumber}GridBox`;
     let miniAvatar = document.createElement("img");
@@ -712,7 +745,7 @@ function setNightStyleWithKiller(element, nightNumber, deadParticipant, killer) 
     let participantName = document.createElement("a");
     if (killer === deadParticipant) {
         miniAvatar.src = deadParticipant.image;
-        miniAvatar.className = "miniAvatar";
+        miniAvatar.className = "miniAvatarSoloDead";
         miniAvatar.id = deadParticipant.id;
         participantName.className = "verticalCenter";
         participantName.textContent = generateWayToDieMessage(deadParticipant);
@@ -774,30 +807,56 @@ function processNightInteractionWithKiller(nightNumber, randomDeadParticipant, k
         }
     }
 }
+function generateWinnerStyle(participant) {
+    let winner = document.getElementById("winner");
+    console.log(`Creating new winner grid box`);
+    let winnerGridBox = document.createElement("div");
+    winnerGridBox.innerHTML = `<p class="winnerParagraph">Winner</p>`;
+    winnerGridBox.className = "winnerGridBox";
+    winnerGridBox.id = `winnerGridBox`;
+    const miniAvatar = document.createElement("img");
+    miniAvatar.src = participant.image;
+    miniAvatar.className = "miniAvatarWinner";
+    miniAvatar.id = participant.id;
+    const participantName = document.createElement("a");
+    participantName.className = "verticalCenter";
+    participantName.textContent = `Congratulations ${participant.name} you won!`;
+    const participantContainer = document.createElement("div");
+    participantContainer.appendChild(miniAvatar);
+    participantContainer.appendChild(participantName);
+    winnerGridBox.appendChild(participantContainer);
+    winner === null || winner === void 0 ? void 0 : winner.appendChild(winnerGridBox);
+}
+// Have to define them globally for this to work
+let haveYouPlayedThis = 0;
 // Function to perform the main game logic
 function runGameCycle() {
     let participantsRemaining = participants.filter(participant => participant.name);
+    let gameButton = document.getElementById("StartGame");
+    gameButton != undefined ? gameButton.innerText = "Replay" : console.log("gameButton is undefined");
+    if (haveYouPlayedThis >= 1) {
+        location.reload();
+    }
     for (let i = 0; i < nightsIDs.length + daysIDs.length; i++) {
         console.log(`Entering iteration ${i}`);
-        let killOrInteraction = getRandomNumber(4); // 1-3 = interaction (2,3,4) | the rest = kill
+        let killOrInteraction = getRandomNumberFromOneToArgumentIncluded(4); // 1-3 = interaction (2,3,4) | the rest = kill
         let interactionParticipant; // since it can be Participant[] or just Participant
         console.log(killOrInteraction);
         console.log(participantsRemaining.length);
         if (killOrInteraction >= 1 && killOrInteraction <= 3) {
-            if (participantsRemaining.length > 4 && killOrInteraction == 3) {
-                interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
-                generateTwoToFourParticipantsInteraction(i, interactionParticipant, 4);
-                continue;
-            }
-            else if (participantsRemaining.length > 3 && killOrInteraction == 2) {
-                interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
-                generateTwoToFourParticipantsInteraction(i, interactionParticipant, 3);
-                continue;
-            }
-            else if (participantsRemaining.length > 2 && killOrInteraction == 1) {
-                interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
-                generateTwoToFourParticipantsInteraction(i, interactionParticipant, 2);
-                continue;
+            switch (true) {
+                case participantsRemaining.length > 4 && killOrInteraction === 3:
+                    interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
+                    generateTwoToFourParticipantsInteraction(i, interactionParticipant, 4);
+                    break;
+                case participantsRemaining.length > 3 && killOrInteraction === 2:
+                    interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
+                    generateTwoToFourParticipantsInteraction(i, interactionParticipant, 3);
+                    break;
+                case participantsRemaining.length > 2 && killOrInteraction === 1:
+                    interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
+                    generateTwoToFourParticipantsInteraction(i, interactionParticipant, 2);
+                    break;
             }
         }
         else {
@@ -815,7 +874,10 @@ function runGameCycle() {
                 processNightInteractionWithKiller(Math.floor(i / 2) + 1, randomDeadParticipant, killer);
             }
             if (participantsRemaining.length === 1) {
+                ++haveYouPlayedThis;
+                generateWinnerStyle(participantsRemaining[0]);
                 console.log('All participants are dead. Exiting loop.');
+                console.log(participantsRemaining[0].name);
                 break;
             }
         }
@@ -838,12 +900,7 @@ function runGameCycle() {
  *
  *
  */
-let haveYouPlayedThis = -1;
 function startGame() {
-    haveYouPlayedThis++;
     runGameCycle();
-    if (haveYouPlayedThis >= 1) {
-        alert("Please refresh the page if you want to run this again");
-    }
     console.log(`Exited with return code '${0}' :D`);
 }

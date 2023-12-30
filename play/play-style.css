@@ -60,7 +60,7 @@ button::after {
 }
 
 .miniAvatar {
-  width: 69px;
+  width: 90px;
   grid-column: 1;
   align-items: left;
   border-style: solid;
@@ -68,8 +68,18 @@ button::after {
   border-color: rgb(128, 0, 0);
   margin-left: 0.5rem;
 }
+
+.miniAvatarSoloDead {
+  width: 90px;
+  grid-column: 1;
+  align-items: left;
+  border-style: solid;
+  border-width: 0.3rem;
+  border-color: rgb(128, 0, 0);
+}
+
 .miniAvatarKiller {
-  width: 69px;
+  width: 90px;
   grid-column: 1;
   align-items: left;
   border-style: solid;
@@ -78,7 +88,7 @@ button::after {
   margin-right: 0.5rem;
 }
 .miniAvatarInteraction {
-  width: 69px;
+  width: 90px;
   grid-column: 1;
   align-items: left;
   border-style: solid;
@@ -86,9 +96,38 @@ button::after {
   border-color: rgb(223, 223, 223);
   margin-right: 0.5rem;
 }
+.miniAvatarWinner {
+  width: 120px;
+  grid-column: 1;
+  align-items: left;
+  border-style: solid;
+  border-width: 0.3rem;
+  border-color: rgb(223, 223, 223);
+}
 
 .verticalCenter {
   display: block;
-  width: 100%;
   top: -40%;
+  font-size: 2rem;
+}
+
+.dayParagraph {
+  font-size: 2rem;
+  margin: 0;
+  color: rgba(231, 225, 143, 0.9);
+  text-align: center;
+}
+
+.nightParagraph {
+  font-size: 2rem;
+  margin: 0;
+  color: rgba(108, 163, 214, 0.9);
+  text-align: center;
+}
+
+.winnerParagraph {
+  font-size: 3rem;
+  margin: 0;
+  color: rgb(223, 223, 223);
+  text-align: center;
 }
