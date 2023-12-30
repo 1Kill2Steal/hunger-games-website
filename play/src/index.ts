@@ -798,7 +798,7 @@ function determineIfKillingSomeoneOrDying(): boolean {
   }
 }
 
-function generateRandomKillMessage(personDying: Participant, killer: Participant) {
+function generateRandomKillMessage(personDying: Participant, killer: Participant): string {
 
   // Randomly select a kill message template
   const killStringTemplate = getRandomElementFromArray(killMessageTemplates);
@@ -813,7 +813,7 @@ function generateRandomKillMessage(personDying: Participant, killer: Participant
 
 }
 
-function generateWayToDieMessage(personDying: Participant) {
+function generateWayToDieMessage(personDying: Participant): string {
   // Randomly select a kill message template
   const killStringTemplate = getRandomElementFromArray(waysToDieTemplate);
 
@@ -937,7 +937,7 @@ function setNightStyleWithKiller(
 
 
 // Function to process a day iteration
-function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipant: Participant, killer: Participant) {
+function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipant: Participant, killer: Participant): void {
   console.log(`Processing day ${dayNumber}`);
   let currDay = document.getElementById(daysIDs[dayNumber - 1]);
   let dayDivExists = currDay?.querySelector('div') !== null;
@@ -958,7 +958,7 @@ function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipan
 
 
 // Function to process a night iteration
-function processNightInteractionWithKiller(nightNumber: number, randomDeadParticipant: Participant, killer: Participant) {
+function processNightInteractionWithKiller(nightNumber: number, randomDeadParticipant: Participant, killer: Participant): void {
   
   console.log(`Processing night ${nightNumber}`);
   let currNight = document.getElementById(nightsIDs[nightNumber - 1]);
