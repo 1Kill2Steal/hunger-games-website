@@ -32,7 +32,6 @@
 type Participant = {
   id: string; 
   name: string;
-  state: boolean;
   image: string;
 };
 
@@ -40,301 +39,251 @@ const participants: Participant[] = [ // "It's easier than it looks I swear." (I
   {
     id: "participant1",
     name: "rcweebs",
-    state: true,
     image: "../images/participants/participant1.jpg"
   },
   {
     id: "participant2",
     name: "NoPengoo",
-    state: true,
     image: "../images/participants/participant2.png"
   },
   {
     id: "participant3",
     name: "mqc",
-    state: true,
     image: "../images/participants/participant3.jpg"
   },
   {
     id: "participant4",
     name: "Coco",
-    state: true,
     image: "../images/participants/participant4.jpg"
   },
   {
     id: "participant5",
     name: "fishe",
-    state: true,
     image: "../images/participants/participant5.png"
   },
   {
     id: "participant6",
     name: "anato",
-    state: true,
     image: "../images/participants/participant6.png"
   },
   {
     id: "participant7",
     name: "Clip",
-    state: true,
     image: "../images/participants/participant7.jpg"
   },
   {
     id: "participant8",
     name: "1Kill2Steal",
-    state: true,
     image: "../images/participants/participant8.jpg"
   },
   {
     id: "participant9",
     name: "Dendi",
-    state: true,
     image: "../images/participants/participant9.gif"
   },
   {
     id: "participant10",
     name: "Dendro Simp",
-    state: true,
     image: "../images/participants/participant10.jpg"
   },
   {
     id: "participant11",
     name: "Emper",
-    state: true,
     image: "../images/participants/participant11.png"
   },
   {
     id: "participant12",
     name: "Gaming",
-    state: true,
     image: "../images/participants/participant12.png"
   },
   {
     id: "participant13",
     name: "Zaptros",
-    state: true,
     image: "../images/participants/participant13.jpg"
   },
   {
     id: "participant14",
     name: "Jecinb",
-    state: true,
     image: "../images/participants/participant14.jpg"
   },
   {
     id: "participant15",
     name: "Iodine",
-    state: true,
     image: "../images/participants/participant15.jpg"
   },
   {
     id: "participant16",
     name: "Yomi",
-    state: true,
     image: "../images/participants/participant16.png"
   },
   {
     id: "participant17",
     name: "Fu",
-    state: true,
     image: "../images/participants/participant17.png"
   },
   {
     id: "participant18",
     name: "EggMango",
-    state: true,
     image: "../images/participants/participant18.png"
   },
   {
     id: "participant19",
     name: "RPC",
-    state: true,
     image: "../images/participants/participant19.png"
   },
   {
     id: "participant20",
     name: "Kälhtzsteiss",
-    state: true,
     image: "../images/participants/participant20.jpg"
   },
   {
     id: "participant21",
     name: "Delka",
-    state: true,
     image: "../images/participants/participant21.png"
   },
   {
     id: "participant22",
     name: "Vertin",
-    state: true,
     image: "../images/participants/participant22.jpg"
   },
   {
     id: "participant23",
     name: "Furina de Fontaine",
-    state: true,
     image: "../images/participants/participant23.jpg"
   },
   {
     id: "participant24",
     name: "Aishira",
-    state: true,
     image: "../images/participants/participant24.png"
   },
   {
     id: "participant25",
     name: "Drag",
-    state: true,
     image: "../images/participants/participant25.jpg"
   },
   {
     id: "participant26",
     name: "BlueArmorDragon",
-    state: true,
     image: "../images/participants/participant26.gif"
   },
   {
     id: "participant27",
     name: "MrDoge",
-    state: true,
     image: "../images/participants/participant27.gif"
   },
   {
     id: "participant28",
     name: "AETHER",
-    state: true,
     image: "../images/participants/participant28.jpg"
   },
   {
     id: "participant29",
     name: "Chongus",
-    state: true,
     image: "../images/participants/participant29.jpg"
   },
   {
     id: "participant30",
     name: "Tokarev",
-    state: true,
     image: "../images/participants/participant30.png"
   },
   {
     id: "participant31",
     name: "Raouka",
-    state: true,
     image: "../images/participants/participant31.jpg"
   },
   {
     id: "participant32",
     name: "KTSUNE",
-    state: true,
     image: "../images/participants/participant32.jpg"
   },
   {
     id: "participant33",
     name: "Sorus",
-    state: true,
     image: "../images/participants/participant33.gif"
   },
   {
     id: "participant34",
     name: "chocofrog",
-    state: true,
     image: "../images/participants/participant34.png"
   },
   {
     id: "participant35",
     name: "Seb",
-    state: true,
     image: "../images/participants/participant35.png"
   },
   {
     id: "participant36",
     name: "Librari",
-    state: true,
     image: "../images/participants/participant36.png"
   },
   {
     id: "participant37",
     name: "Maike Taisan",
-    state: true,
     image: "../images/participants/participant37.jpg"
   },
   {
     id: "participant38",
     name: "Pengi",
-    state: true,
     image: "../images/participants/participant38.gif"
   },
   {
     id: "participant39",
     name: "Daikon",
-    state: true,
     image: "../images/participants/participant39.jpg"
   },
   {
     id: "participant40",
     name: "TechnoDragoVin",
-    state: true,
     image: "../images/participants/participant40.png"
   },
   {
     id: "participant41",
     name: "Aki",
-    state: true,
     image: "../images/participants/participant41.png"
   },
   {
     id: "participant42",
     name: "Cyber",
-    state: true,
     image: "../images/participants/participant42.png"
   },
   {
     id: "participant43",
     name: "Uyrem",
-    state: true,
     image: "../images/participants/participant43.png"
   },
   {
     id: "participant44",
     name: "Roll",
-    state: true,
     image: "../images/participants/participant44.jpg"
   },
   {
     id: "participant45",
     name: "ponoma",
-    state: true,
     image: "../images/participants/participant45.png"
   },
   {
     id: "participant46",
     name: "Hu Tao",
-    state: true,
     image: "../images/participants/participant46.png"
   },
   {
     id: "participant47",
     name: "cow",
-    state: true,
     image: "../images/participants/participant47.png"
   },
   {
     id: "participant48",
     name: "bonny",
-    state: true,
     image: "../images/participants/participant48.png"
   },
   {
     id: "participant49",
     name: "vons",
-    state: true,
     image: "../images/participants/participant49.jpg"
   },
   {
     id: "participant50",
     name: "Nick",
-    state: true,
     image: "../images/participants/participant50.jpg"
   },
 ];
@@ -698,14 +647,14 @@ function determineIfKillingSomeoneOrDying(): boolean {
 function generateTwoToFourParticipantsInteraction(dayOrNight: number, participant: Participant[], participantCount: number) {
   if (dayOrNight % 2 == 0) { // day
     console.log(`Processing day ${dayOrNight/2+1}`);
-    let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
+    let currDay = document.getElementById(daysIDs[dayOrNight/2]);
     let dayDivExists = currDay?.querySelector('div') !== null;
     if (!dayDivExists) {
       console.log(`Creating new day grid box`);
       let newDayGridBox = document.createElement("div");
   
       try {
-        setDayInteractionGrid(participant, participantCount, newDayGridBox, Math.floor(dayOrNight/2)) // Too many similar functions otherwise
+        setDayInteractionGrid(participant, participantCount, newDayGridBox, dayOrNight/2 + 1) // Too many similar functions otherwise
         if (currDay) { currDay.appendChild(newDayGridBox); }
       } catch (e) {
         console.log(e);
@@ -713,14 +662,14 @@ function generateTwoToFourParticipantsInteraction(dayOrNight: number, participan
     }
   } else { // night
     console.log(`Processing night ${Math.floor(dayOrNight/2)+1}`);
-    let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2) - 1]);
+    let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2)]);
     let nightDivExists = currNight?.querySelector('div') !== null;
     if (!nightDivExists) {
       console.log(`Creating new night grid box`);
       let newNightGridBox = document.createElement("div");
   
       try {
-        setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight/2)) // Too many similar functions otherwise
+        setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight/2) + 1) // Too many similar functions otherwise
         if (currNight) { currNight.appendChild(newNightGridBox); }
       } catch (e) {
         console.log(e);
@@ -926,25 +875,26 @@ function processNightInteractionWithKiller(nightNumber: number, randomDeadPartic
 
 // Function to perform the main game logic
 function runGameCycle() {
-  let participantsRemaining = participants.filter(participant => participant.state);
+  let participantsRemaining = participants.filter(participant => participant.name);
 
   for (let i = 0; i < nightsIDs.length + daysIDs.length; i++) {
     console.log(`Entering iteration ${i}`);
     
     
-    let killOrInteraction = getRandomNumber(4); // 2-4 = interaction (2,3,4) | the rest = kill
+    let killOrInteraction = getRandomNumber(4); // 1-3 = interaction (2,3,4) | the rest = kill
     let interactionParticipant: Participant[]; // since it can be Participant[] or just Participant
     console.log(killOrInteraction);
-    if (killOrInteraction >= 2 && killOrInteraction <= 4) {
-      if(participantsRemaining.length > 4 && killOrInteraction == 4) {
-      interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
-      generateTwoToFourParticipantsInteraction(i, interactionParticipant, 4);
+    console.log(participantsRemaining.length);
+    if (killOrInteraction >= 1 && killOrInteraction <= 3) {
+      if(participantsRemaining.length > 4 && killOrInteraction == 3) {
+        interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
+        generateTwoToFourParticipantsInteraction(i, interactionParticipant, 4);
         continue;
-      } else if (participantsRemaining.length > 3 && killOrInteraction == 3) {
+      } else if (participantsRemaining.length > 3 && killOrInteraction == 2) {
         interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
         generateTwoToFourParticipantsInteraction(i, interactionParticipant, 3);
         continue;
-      } else if (participantsRemaining.length > 2 && killOrInteraction == 2) {
+      } else if (participantsRemaining.length > 2 && killOrInteraction == 1) {
         interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
         generateTwoToFourParticipantsInteraction(i, interactionParticipant, 2);
         continue;
