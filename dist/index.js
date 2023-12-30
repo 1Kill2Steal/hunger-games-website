@@ -538,6 +538,7 @@ function generateInteractionAvatarsAndAssignTheirClassAndID(participants, partic
         const miniAvatar = document.createElement("img");
         miniAvatar.src = participant.image;
         miniAvatar.title = participant.name;
+        miniAvatar.alt = participant.name;
         miniAvatar.className = "miniAvatarInteraction";
         miniAvatar.id = participant.id;
         return miniAvatar;
