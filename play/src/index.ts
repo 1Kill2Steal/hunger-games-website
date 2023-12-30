@@ -19,7 +19,11 @@
  * 
  * DATA PART
  * 
- * Author: 1Kill2Steal
+ * Authors: 1Kill2Steal for all the functionality and mainly the discord community
+ * *******|  at the nopengoo discord server (https://discord.gg/nopengoo).
+ * *******|  Emper got the data from the people at chat.
+ * *******|  Also all the participants for their names and pics
+ * 
  * Date: 27/12/2023 (DD/MM/YYYY)
  * Making static websites is a fucking pain.
  * 
@@ -29,13 +33,16 @@
  * 
  */
 
+
+// Mapped the participants out at the end of the data part
+
 type Participant = {
   id: string; 
   name: string;
   image: string;
 };
 
-const participants: Participant[] = [ // "It's easier than it looks I swear." (I love you ChatGPT)
+const participants: Participant[] = [
   {
     id: "participant1",
     name: "rcweebs",
@@ -288,50 +295,6 @@ const participants: Participant[] = [ // "It's easier than it looks I swear." (I
   },
 ];
 
-const participantsMap = new Map<string, Participant>();
-
-participants.forEach((participant: Participant) => {
-  participantsMap.set(participant.id, participant);
-});
-
-let dayAndNightCounter = 200;
-
-// automate array creation (use more of the clients CPU ehehe)
-const daysIDs: string[] = [];
-for(let i = 1; i <= dayAndNightCounter; i++) {
-  daysIDs.push(`day${[i]}`);
-}
-const nightsIDs: string[] = [];
-for(let i = 1; i <= dayAndNightCounter; i++) {
-  nightsIDs.push(`night${[i]}`);
-}
-const winner: string = "Winner"
-// Create DOM - same reason
-const gameObjectsContainer = document.querySelector('.gameContainer');
-for (let i = 1; i <= dayAndNightCounter; i++) {
-  const dayElement = document.createElement('div');
-  dayElement.className = 'gameObjDay';
-  dayElement.id = `day${i}`;
-
-  const nightElement = document.createElement('div');
-  nightElement.className = 'gameObjNight';
-  nightElement.id = `night${i}`;
-
-  const gameObjectsDiv = document.createElement('div');
-  gameObjectsDiv.className = 'gameObjects';
-  gameObjectsDiv.appendChild(dayElement);
-  gameObjectsDiv.appendChild(nightElement);
-
-  gameObjectsContainer?.appendChild(gameObjectsDiv);
-}
-const winnerElement = document.createElement('div');
-  winnerElement.className = 'gameObjWinner';
-  winnerElement.id = `winner`;
-const gameObjectsDiv = document.createElement('div');
-  gameObjectsDiv.className = 'gameObjects';
-  gameObjectsDiv.appendChild(winnerElement);
-  gameObjectsContainer?.appendChild(gameObjectsDiv);
-
 
 // 2 participants interacting
 
@@ -455,12 +418,12 @@ const killMessageTemplates: string[] = [
   "${killer} picks up a cursed sword and is possessed by it, killing ${personDying}.",
   "${killer} sabotages ${personDying}'s weapon, causing ${personDying} to end up end because they were using a broken weapon.",
   "${personDying} spills ${killer}'s coffee and is strangled to death.",
-  "${personDying} played Russian Roulette with ${killer}. ${personDying} perished."
+  "${personDying} played Russian Rouconstte with ${killer}. ${personDying} perished."
   // Add more kill message templates as needed
 ];
 
 // `${personDying} ${waysToDie[x]}`
-const waysToDieTemplate: string[] = [
+const waysToDieTemplates: string[] = [
   "${personDying} slipped on a banana peel. (you silly goose)",
   "A meteorite fell on ${personDying}'s head. (relateable) { NO AoE SOMEHOW }",
   "${personDying} experienced kinetic energy attempting to scale a tree.",
@@ -522,13 +485,65 @@ const waysToDieTemplate: string[] = [
   // TBA
 ]
 
+
+// This is some basic functionality but its also functionality for data retrieval
+/////////////////////////////////////////////////////////////////////////////////
+
+// counter for both as they're always equal in count for this project
+const dayAndNightCounter = 200;
+
+// automate array creation (use more of the clients CPU ehehe)
+const daysIDs: string[] = [];
+for(let i = 1; i <= dayAndNightCounter; i++) {
+  daysIDs.push(`day${[i]}`);
+}
+const nightsIDs: string[] = [];
+for(let i = 1; i <= dayAndNightCounter; i++) {
+  nightsIDs.push(`night${[i]}`);
+}
+
+// Create DOM - same reason
+const gameObjectsContainer = document.querySelector('.gameContainer');
+for (let i = 1; i <= dayAndNightCounter; i++) {
+  const dayElement = document.createElement('div');
+  dayElement.className = 'gameObjDay';
+  dayElement.id = `day${i}`;
+
+  const nightElement = document.createElement('div');
+  nightElement.className = 'gameObjNight';
+  nightElement.id = `night${i}`;
+
+  const gameObjectsDiv = document.createElement('div');
+  gameObjectsDiv.className = 'gameObjects';
+  gameObjectsDiv.appendChild(dayElement);
+  gameObjectsDiv.appendChild(nightElement);
+
+  gameObjectsContainer?.appendChild(gameObjectsDiv);
+}
+
+// Just 1 winner instance at the end of it.
+const winnerElement = document.createElement('div');
+  winnerElement.className = 'gameObjWinner';
+  winnerElement.id = `winner`;
+const gameObjectsDiv = document.createElement('div');
+  gameObjectsDiv.className = 'gameObjects';
+  gameObjectsDiv.appendChild(winnerElement);
+  gameObjectsContainer?.appendChild(gameObjectsDiv);
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+
 /* 
  * 
  * 
  * 
  * 
  * 
- * FUNCTIONS PART
+ * FUNCTIONS PART (fookin hell - loved making it tho... ***SLAMS KEYBOARD***)
+ * 
+ *  - masochist, why did you make it all in 1 file???
+ *  Well you see, I tried bundling it, but it didn't work!
  * 
  * Author: 1Kill2Steal
  * Date: 27/12/2023 (DD/MM/YYYY)
@@ -540,13 +555,14 @@ const waysToDieTemplate: string[] = [
  * 
  */
 
-// rand number between 1 and range (included)
+// Random number between 1 and range (included)
 function getRandomNumberFromOneToArgumentIncluded(range: number): number {
   const randomNumber = Math.floor(Math.random() * range) + 1;
 
   return randomNumber;
 }
 
+// self-explanatory.
 function getRandomElementFromArray<T>(array: T[]): T {
   const randomIndex = Math.floor(Math.random() * array.length);
   const randomElement = array[randomIndex];
@@ -557,29 +573,18 @@ function getRandomElementFromArray<T>(array: T[]): T {
 // It's important that the random interacting people are unique array elements
 // Therefore we shuffle the sorting by using Math.random() and get the first
 // elements from the sorted array with slicing
-function getTwoUniqueRandomElementsFromArray<T>(array: T[]): T[] {
+function getUniqueRandomElementsFromArray<T>(array: T[], count: number): T[] {
   const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
-
-  return shuffledArray.slice(0, 2);
-}
-function getThreeUniqueRandomElementsFromArray<T>(array: T[]): T[] {
-  const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
-
-  return shuffledArray.slice(0, 3);
-}
-function getFourUniqueRandomElementsFromArray<T>(array: T[]): T[] {
-  const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
-
-  return shuffledArray.slice(0, 4);
+  return shuffledArray.slice(0, count);
 }
 
 
-// Reusable functions
-function dayParagraphText(dayNumber: number): string {
+// Reusable self-explanatory functions
+function dayParagraphTextContent(dayNumber: number): string {
   const result = `<p class="dayParagraph">Day ${dayNumber}</p>`
   return result;
 }
-function nightParagraphText(nightNumber: number): string {
+function nightParagraphTextContent(nightNumber: number): string {
   const result = `<p class="nightParagraph">Night ${nightNumber}</p>`;
   return result;
 }
@@ -587,7 +592,7 @@ function nightParagraphText(nightNumber: number): string {
 
 // For modularity purpose the functions will take Participant[] and participantCount
 // Otherwise I'd repeat myself several times.
-function generateInteractionAvatars(
+function generateInteractionAvatarsAndAssignTheirClassAndID(
   participants: Participant[],
   participantCount: number
   ): HTMLImageElement[] {
@@ -604,29 +609,10 @@ function generateInteractionAvatars(
 
 // This is again moved to a seperate function for modularity purpose,
 // because its reused in the day and night generation
-function determineInteractingUsersAvatarsGeneration(
-  participant: Participant[],
-  participantCount: number
-  ): HTMLImageElement[] {
-
-  let miniAvatars: HTMLImageElement[] = []; 
-
-  switch(participantCount) {
-    case 4:
-      // 4 participant interaction
-      miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2], participant[3]], participantCount);
-    break;
-    case 3:
-      // 3 participant interaction
-      miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2]], participantCount);
-    break;
-    case 2:
-      // 2 participant interaction
-      miniAvatars = generateInteractionAvatars([participant[0], participant[1]], participantCount);
-    break;
-  }
-
-  return miniAvatars;
+// Function to determine interaction participants based on count
+function determineInteractionUsersAvatarsGeneration(participant: Participant[], count: number): HTMLImageElement[] {
+  const selectedParticipants = getUniqueRandomElementsFromArray(participant, count);
+  return generateInteractionAvatarsAndAssignTheirClassAndID(selectedParticipants, count);
 }
 
 
@@ -638,12 +624,12 @@ function setDayInteractionGrid(
   dayNumber: number
   ): void {
 
-  element.innerHTML = dayParagraphText(dayNumber);
+  element.innerHTML = dayParagraphTextContent(dayNumber);
   element.className = "dayGridBox";
   element.id = `day${dayNumber}GridBox`;
 
 
-  let miniAvatars: HTMLImageElement[] = determineInteractingUsersAvatarsGeneration(participant, participantCount);
+  const miniAvatars: HTMLImageElement[] = determineInteractionUsersAvatarsGeneration(participant, participantCount);
 
 
   const participantName = document.createElement("a");
@@ -664,12 +650,12 @@ function setNightInteractionGrid(
   nightNumber: number
   ): void {
 
-  element.innerHTML = nightParagraphText(nightNumber);
+  element.innerHTML = nightParagraphTextContent(nightNumber);
   element.className = "nightGridBox";
   element.id = `night${nightNumber}GridBox`;
 
 
-  let miniAvatars: HTMLImageElement[] = determineInteractingUsersAvatarsGeneration(participant, participantCount);
+  const miniAvatars: HTMLImageElement[] = determineInteractionUsersAvatarsGeneration(participant, participantCount);
 
 
   const participantName = document.createElement("a");
@@ -682,6 +668,7 @@ function setNightInteractionGrid(
   element.appendChild(participantContainer);
 }
 
+// This function is getting called from the second one below it
 function setUpDayInteraction (
   participant: Participant[],
   participantCount: number,
@@ -689,22 +676,23 @@ function setUpDayInteraction (
   ): void {
 
   console.log(`Processing day ${dayOrNight/2+1}`);
-  let currDay = document.getElementById(daysIDs[dayOrNight/2]);
-  let dayDivExists = currDay?.querySelector('div') !== null;
+  const currDay = document.getElementById(daysIDs[dayOrNight/2]);
+  const dayDivExists = currDay?.querySelector('div') !== null;
   if (!dayDivExists) {
     console.log(`Creating new day grid box`);
-    let newDayGridBox = document.createElement("div");
+    const newDayGridBox = document.createElement("div");
 
     try {
       setDayInteractionGrid(participant, participantCount, newDayGridBox, dayOrNight/2 + 1)
       if (currDay) { currDay.appendChild(newDayGridBox); }
     } catch (e) {
-      console.log(e);
+      console.log(`Couldn't set day interaction grid: ${e}`);
     }
   }
 
 }
 
+// This function is getting called from the one below it
 function setUpNightInteraction (
   participant: Participant[],
   participantCount: number,
@@ -712,23 +700,24 @@ function setUpNightInteraction (
   ): void {
 
   console.log(`Processing night ${Math.floor(dayOrNight/2)+1}`);
-  let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2)]);
-  let nightDivExists = currNight?.querySelector('div') !== null;
+  const currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2)]);
+  const nightDivExists = currNight?.querySelector('div') !== null;
   if (!nightDivExists) {
     console.log(`Creating new night grid box`);
-    let newNightGridBox = document.createElement("div");
+    const newNightGridBox = document.createElement("div");
 
     try {
       setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight/2) + 1);
       if (currNight) { currNight.appendChild(newNightGridBox); }
     } catch (e) {
-      console.log(e);
+      console.log(`Couldn't set night interacton grid: ${e}`);
     }
   }
 
 }
 
-function generateTwoToFourParticipantsInteraction(
+// self-explanatory.
+function determineIfInteractionIsAtDayOrNightAndSetUp(
   dayOrNight: number,
   participant: Participant[],
   participantCount: number
@@ -741,6 +730,9 @@ function generateTwoToFourParticipantsInteraction(
   }
 }
 
+// Determines interatcing users then runs
+// a regulax expression on the corresponding
+// interacting users arrays
 function generateInteractionMessage(
   participant: Participant[],
   participantCount: number
@@ -798,6 +790,24 @@ function determineIfKillingSomeoneOrDying(): boolean {
   }
 }
 
+// function to generate the dying message:
+// const waysToDieTemplates: string[]
+// by using regular expressions
+function generateWayToDieMessage(personDying: Participant): string {
+  // Randomly select a kill message template
+  const dieStringTemplate = getRandomElementFromArray(waysToDieTemplates);
+
+  // Generate the killString by replacing placeholders with participant names
+  const dieString = dieStringTemplate
+    .replace(/\${personDying}/g, personDying.name);
+
+  // return the randomly generated kill message
+  return dieString;
+}
+
+// function to generate the killing message:
+// const killMessageTemplates: string[]
+// by using regular expressions
 function generateRandomKillMessage(personDying: Participant, killer: Participant): string {
 
   // Randomly select a kill message template
@@ -813,19 +823,10 @@ function generateRandomKillMessage(personDying: Participant, killer: Participant
 
 }
 
-function generateWayToDieMessage(personDying: Participant): string {
-  // Randomly select a kill message template
-  const killStringTemplate = getRandomElementFromArray(waysToDieTemplate);
 
-  // Generate the killString by replacing placeholders with participant names
-  const killString = killStringTemplate
-    .replace(/\${personDying}/g, personDying.name);
-
-  // return the randomly generated kill message
-  return killString;
-}
-
-
+// Function to set up the avatar of the killer and dead participant
+// as well as the text box from the data section
+// killMessageTemplates: string[]
 function generateDeadParticipantAvatarAndText(
   miniAvatar: HTMLImageElement,
   participantName: HTMLAnchorElement,
@@ -839,6 +840,10 @@ function generateDeadParticipantAvatarAndText(
   participantName.textContent = generateWayToDieMessage(deadParticipant);
 
 }
+
+// Function to set up the avatar of the killer and dead participant
+// as well as the text box from the data section
+// killMessageTemplates: string[]
 function generateKillerAndDeadParticipantAvatarAndText(
   miniAvatar: HTMLImageElement,
   secondAvatar: HTMLImageElement,
@@ -860,6 +865,8 @@ function generateKillerAndDeadParticipantAvatarAndText(
   
 }
 
+
+// Function to set up the grid style in the day !!!where there's kiling!!!
 function setDayGridStyleWithKiller(
   element: HTMLElement,
   dayNumber: number,
@@ -867,13 +874,13 @@ function setDayGridStyleWithKiller(
   killer: Participant
   ): void {
 
-  element.innerHTML = dayParagraphText(dayNumber);
+  element.innerHTML = dayParagraphTextContent(dayNumber);
   element.className = "dayGridBox";
   element.id = `day${dayNumber}GridBox`;
   
-  let miniAvatar = document.createElement("img");
-  let secondAvatar = document.createElement("img");
-  let participantName = document.createElement("a");
+  const miniAvatar = document.createElement("img");
+  const secondAvatar = document.createElement("img");
+  const participantName = document.createElement("a");
 
   if (killer === deadParticipant) {
     generateDeadParticipantAvatarAndText(miniAvatar, participantName, deadParticipant);
@@ -889,6 +896,7 @@ function setDayGridStyleWithKiller(
 
 }
 
+// Function to set up the grid style in the night !!!where there's kiling!!!
 function setNightStyleWithKiller(
   element: HTMLElement,
   nightNumber: number,
@@ -896,13 +904,15 @@ function setNightStyleWithKiller(
   killer: Participant
 ): void {
 
-  element.innerHTML = nightParagraphText(nightNumber);
+  element.innerHTML = nightParagraphTextContent(nightNumber);
   element.className = "nightGridBox";
   element.id = `night${nightNumber}GridBox`;
 
-  let miniAvatar = document.createElement("img");
-  let secondAvatar;
-  let participantName = document.createElement("a");
+  const miniAvatar = document.createElement("img");
+  
+  const participantName = document.createElement("a");
+
+  const participantContainer = document.createElement("div");
 
   if (killer === deadParticipant) {
     miniAvatar.src = deadParticipant.image;
@@ -916,19 +926,16 @@ function setNightStyleWithKiller(
     miniAvatar.className = "miniAvatar";
     miniAvatar.id = deadParticipant.id;
 
-    secondAvatar = document.createElement("img");
+    const secondAvatar = document.createElement("img");
     secondAvatar.src = killer.image;
     secondAvatar.className = "miniAvatarKiller";
     secondAvatar.id = killer.id;
+    if (secondAvatar) { participantContainer.appendChild(secondAvatar); }
     
     participantName.className = "verticalCenter";
     participantName.textContent = generateRandomKillMessage(deadParticipant, killer);
   }
 
-  
-
-  const participantContainer = document.createElement("div");
-  if (secondAvatar) { participantContainer.appendChild(secondAvatar); }
   participantContainer.appendChild(miniAvatar);
   participantContainer.appendChild(participantName);
   element.appendChild(participantContainer);
@@ -936,53 +943,54 @@ function setNightStyleWithKiller(
 
 
 
-// Function to process a day iteration
+// Function to process a day iteration !!!where there's kiling!!!
 function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipant: Participant, killer: Participant): void {
   console.log(`Processing day ${dayNumber}`);
-  let currDay = document.getElementById(daysIDs[dayNumber - 1]);
-  let dayDivExists = currDay?.querySelector('div') !== null;
+  const currDay = document.getElementById(daysIDs[dayNumber - 1]);
+  const dayDivExists = currDay?.querySelector('div') !== null;
 
   if (!dayDivExists) {
     console.log(`Creating new day grid box`);
-    let newDayGridBox = document.createElement("div");
+    const newDayGridBox = document.createElement("div");
 
     try {
       setDayGridStyleWithKiller(newDayGridBox, dayNumber, randomDeadParticipant, killer);
       if (currDay) { currDay.appendChild(newDayGridBox); }
     } catch (e) {
-      console.log(e);
+      console.log(`Couldn't set day grid style with killer: ${e}`);
     }
   }
 }
 
 
 
-// Function to process a night iteration
+// Function to process a night iteration !!!where there's kiling!!!
 function processNightInteractionWithKiller(nightNumber: number, randomDeadParticipant: Participant, killer: Participant): void {
   
   console.log(`Processing night ${nightNumber}`);
-  let currNight = document.getElementById(nightsIDs[nightNumber - 1]);
-  let nightDivExists = currNight?.querySelector('div') !== null;
+  const currNight = document.getElementById(nightsIDs[nightNumber - 1]);
+  const nightDivExists = currNight?.querySelector('div') !== null;
 
   if (!nightDivExists) {
     console.log(`Creating new night grid box`);
-    let newNightGridBox = document.createElement("div");
+    const newNightGridBox = document.createElement("div");
 
     try {
       setNightStyleWithKiller(newNightGridBox, nightNumber, randomDeadParticipant, killer);
       if (currNight) { currNight.appendChild(newNightGridBox); }
     } catch (e) {
-      console.log(e);
+      console.log(`Couldn't set night grid style with killer: ${e}`);
     }
   }
 }
 
-
+// Just like the day/night but with slightly different content
+// and also different CSS style via the different classes.
 function generateWinnerStyle(participant: Participant): void {
-  let winner = document.getElementById("winner");
+  const winner = document.getElementById("winner");
 
   console.log(`Creating new winner grid box`);
-  let winnerGridBox = document.createElement("div");
+  const winnerGridBox = document.createElement("div");
 
   winnerGridBox.innerHTML = `<p class="winnerParagraph">Winner</p>`;
   winnerGridBox.className = "winnerGridBox";
@@ -1012,11 +1020,10 @@ function generateWinnerStyle(participant: Participant): void {
 // Have to define them globally for this to work
 let haveYouPlayedThis = 0;
 
-
 // Function to perform the main game logic
 function runGameCycle() {
   let participantsRemaining = participants.filter(participant => participant.name);
-  let gameButton = document.getElementById("StartGame");
+  const gameButton = document.getElementById("StartGame");
   gameButton != undefined ? gameButton.innerText = "Replay" : console.log("gameButton is undefined");
 
   if(haveYouPlayedThis >= 1) {
@@ -1027,33 +1034,33 @@ function runGameCycle() {
     console.log(`Entering iteration ${i}`);
     
     
-    let killOrInteraction = getRandomNumberFromOneToArgumentIncluded(4); // 1-3 = interaction (2,3,4) | the rest = kill
+    const killOrInteraction = getRandomNumberFromOneToArgumentIncluded(4); // 1-3 = interaction (2,3,4) | the rest = kill
     let interactionParticipant: Participant[]; // since it can be Participant[] or just Participant
     console.log(killOrInteraction);
     console.log(participantsRemaining.length);
 
     if (killOrInteraction >= 1 && killOrInteraction <= 3) {
-      switch (true) {
+      switch (true) { // when i try to do switch(killOrInteraction >= 1 && killOrInteraction <= 3) it doesn't work as intended
         case participantsRemaining.length > 4 && killOrInteraction === 3:
-          interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
-          generateTwoToFourParticipantsInteraction(i, interactionParticipant, 4);
+          interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 4);
+          determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 4);
           break;
         
         case participantsRemaining.length > 3 && killOrInteraction === 2:
-          interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
-          generateTwoToFourParticipantsInteraction(i, interactionParticipant, 3);
+          interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 3);
+          determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 3);
           break;
       
         case participantsRemaining.length > 2 && killOrInteraction === 1:
-          interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
-          generateTwoToFourParticipantsInteraction(i, interactionParticipant, 2);
+          interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 2);
+          determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 2);
           break;
       }
       
     } else {
       const randomDeadParticipant = getRandomElementFromArray(participantsRemaining);
 
-      let killOrBeKilled = determineIfKillingSomeoneOrDying();
+      const killOrBeKilled = determineIfKillingSomeoneOrDying();
       let killer = randomDeadParticipant;
       if (killOrBeKilled) {
         killer = getRandomElementFromArray(participantsRemaining);
@@ -1074,7 +1081,7 @@ function runGameCycle() {
         generateWinnerStyle(participantsRemaining[0]);
 
         console.log('All participants are dead. Exiting loop.');
-        console.log(participantsRemaining[0].name);
+        console.log(`The winner is: ${participantsRemaining[0].name}, congratulations!`);
 
         break;
         
@@ -1106,9 +1113,10 @@ function runGameCycle() {
  */
 
 
+// functions like a main function
 function startGame(): void {
 
   runGameCycle();
   
-  console.log(`Exited with return code '${0}' :D`);
+  console.log(`Game iterated`);
 }
