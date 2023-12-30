@@ -499,11 +499,13 @@ gameObjectsContainer === null || gameObjectsContainer === void 0 ? void 0 : game
  *
  */
 // Random number between 1 and range (included)
+// Impure function - Math.random()
 function getRandomNumberFromOneToArgumentIncluded(range) {
     const randomNumber = Math.floor(Math.random() * range) + 1;
     return randomNumber;
 }
 // self-explanatory.
+// Impure function  - Math.random()
 function getRandomElementFromArray(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
     const randomElement = array[randomIndex];
@@ -512,21 +514,25 @@ function getRandomElementFromArray(array) {
 // It's important that the random interacting people are unique array elements
 // Therefore we shuffle the sorting by using Math.random() and get the first
 // elements from the sorted array with slicing
+// Impure function - Math.random()
 function getUniqueRandomElementsFromArray(array, count) {
     const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
     return shuffledArray.slice(0, count);
 }
 // Reusable self-explanatory functions
+// Pure function
 function dayParagraphTextContent(dayNumber) {
     const result = `<p class="dayParagraph">Day ${dayNumber}</p>`;
     return result;
 }
+// Pure function - similar to dayParagraphTextContent
 function nightParagraphTextContent(nightNumber) {
     const result = `<p class="nightParagraph">Night ${nightNumber}</p>`;
     return result;
 }
 // For modularity purpose the functions will take Participant[] and participantCount
 // Otherwise I'd repeat myself several times.
+// Impure function - DOM manipulation
 function generateInteractionAvatarsAndAssignTheirClassAndID(participants, participantCount) {
     return participants.slice(0, participantCount).map((participant) => {
         const miniAvatar = document.createElement("img");
@@ -539,11 +545,13 @@ function generateInteractionAvatarsAndAssignTheirClassAndID(participants, partic
 // This is again moved to a seperate function for modularity purpose,
 // because its reused in the day and night generation
 // Function to determine interaction participants based on count
+// Impure function - calls generateInteractionAvatarsAndAssignTheirClassAndID() which has DOM manipulation
 function determineInteractionUsersAvatarsGeneration(participant, count) {
     const selectedParticipants = getUniqueRandomElementsFromArray(participant, count);
     return generateInteractionAvatarsAndAssignTheirClassAndID(selectedParticipants, count);
 }
 // Day interactions for the users interacting
+// Impure function - DOM manipulation
 function setDayInteractionGrid(participant, participantCount, element, dayNumber) {
     element.innerHTML = dayParagraphTextContent(dayNumber);
     element.className = "dayGridBox";
@@ -558,6 +566,7 @@ function setDayInteractionGrid(participant, participantCount, element, dayNumber
     element.appendChild(participantContainer);
 }
 // Night interactions for the users interacting
+// Impure function - DOM manipulation
 function setNightInteractionGrid(participant, participantCount, element, nightNumber) {
     element.innerHTML = nightParagraphTextContent(nightNumber);
     element.className = "nightGridBox";
@@ -572,6 +581,7 @@ function setNightInteractionGrid(participant, participantCount, element, nightNu
     element.appendChild(participantContainer);
 }
 // This function is getting called from the second one below it
+// Impure function - Calls setDayInteractionGrid() which has DOM manipulation
 function setUpDayInteraction(participant, participantCount, dayOrNight) {
     console.log(`Processing day ${dayOrNight / 2 + 1}`);
     const currDay = document.getElementById(daysIDs[dayOrNight / 2]);
@@ -591,6 +601,7 @@ function setUpDayInteraction(participant, participantCount, dayOrNight) {
     }
 }
 // This function is getting called from the one below it
+// Impure function - Calls setNightInteractionGrid() which has DOM manipulation
 function setUpNightInteraction(participant, participantCount, dayOrNight) {
     console.log(`Processing night ${Math.floor(dayOrNight / 2) + 1}`);
     const currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight / 2)]);
@@ -610,6 +621,8 @@ function setUpNightInteraction(participant, participantCount, dayOrNight) {
     }
 }
 // self-explanatory.
+// Impure function - Calls setNightInteraction() which calls setNightInteractionGrid() which has DOM manipulation
+// ****************| Calls setDayInteraction() which calls setDayInteractionGrid() which has DOM manipulation
 function determineIfInteractionIsAtDayOrNightAndSetUp(dayOrNight, participant, participantCount) {
     if (dayOrNight % 2 == 0) { // day
         setUpDayInteraction(participant, participantCount, dayOrNight);
@@ -621,6 +634,7 @@ function determineIfInteractionIsAtDayOrNightAndSetUp(dayOrNight, participant, p
 // Determines interatcing users then runs
 // a regulax expression on the corresponding
 // interacting users arrays
+// Impure function - Calls getRandomElementFromArray() which contains Math.random()
 function generateInteractionMessage(participant, participantCount) {
     let interactString;
     switch (participantCount) {
@@ -655,6 +669,7 @@ function generateInteractionMessage(participant, participantCount) {
 }
 // true = kill, false = die
 // This is the rng on whether you die on your own or kill someone else
+// Pure function - odds are predetermined
 function determineIfKillingSomeoneOrDying() {
     let killOrDie;
     // 69/420 (funny) is around 0.164285714286% to die
@@ -671,6 +686,7 @@ function determineIfKillingSomeoneOrDying() {
 // function to generate the dying message:
 // const waysToDieTemplates: string[]
 // by using regular expressions
+// Impure function - Calls getRandomElementFromArray() which contains Math.random()
 function generateWayToDieMessage(personDying) {
     // Randomly select a kill message template
     const dieStringTemplate = getRandomElementFromArray(waysToDieTemplates);
@@ -683,6 +699,7 @@ function generateWayToDieMessage(personDying) {
 // function to generate the killing message:
 // const killMessageTemplates: string[]
 // by using regular expressions
+// Impure function - Calls getRandomElementFromArray() which contains Math.random()
 function generateRandomKillMessage(personDying, killer) {
     // Randomly select a kill message template
     const killStringTemplate = getRandomElementFromArray(killMessageTemplates);
@@ -696,6 +713,7 @@ function generateRandomKillMessage(personDying, killer) {
 // Function to set up the avatar of the killer and dead participant
 // as well as the text box from the data section
 // killMessageTemplates: string[]
+// Impure function - DOM manipulation
 function generateDeadParticipantAvatarAndText(miniAvatar, participantName, deadParticipant) {
     miniAvatar.src = deadParticipant.image;
     miniAvatar.className = "miniAvatarSoloDead";
@@ -706,6 +724,7 @@ function generateDeadParticipantAvatarAndText(miniAvatar, participantName, deadP
 // Function to set up the avatar of the killer and dead participant
 // as well as the text box from the data section
 // killMessageTemplates: string[]
+// Impure function - DOM manipulation
 function generateKillerAndDeadParticipantAvatarAndText(miniAvatar, secondAvatar, participantName, deadParticipant, killer) {
     miniAvatar.src = deadParticipant.image;
     miniAvatar.className = "miniAvatar";
@@ -717,6 +736,7 @@ function generateKillerAndDeadParticipantAvatarAndText(miniAvatar, secondAvatar,
     participantName.textContent = generateRandomKillMessage(deadParticipant, killer);
 }
 // Function to set up the grid style in the day !!!where there's kiling!!!
+// Impure function - DOM manipulation
 function setDayGridStyleWithKiller(element, dayNumber, deadParticipant, killer) {
     element.innerHTML = dayParagraphTextContent(dayNumber);
     element.className = "dayGridBox";
@@ -739,6 +759,7 @@ function setDayGridStyleWithKiller(element, dayNumber, deadParticipant, killer) 
     element.appendChild(participantContainer);
 }
 // Function to set up the grid style in the night !!!where there's kiling!!!
+// Impure function - DOM manipulation
 function setNightStyleWithKiller(element, nightNumber, deadParticipant, killer) {
     element.innerHTML = nightParagraphTextContent(nightNumber);
     element.className = "nightGridBox";
@@ -772,6 +793,7 @@ function setNightStyleWithKiller(element, nightNumber, deadParticipant, killer) 
     element.appendChild(participantContainer);
 }
 // Function to process a day iteration !!!where there's kiling!!!
+// Impure function - DOM manipulation
 function processDayInteractionWithKiller(dayNumber, randomDeadParticipant, killer) {
     console.log(`Processing day ${dayNumber}`);
     const currDay = document.getElementById(daysIDs[dayNumber - 1]);
@@ -791,6 +813,7 @@ function processDayInteractionWithKiller(dayNumber, randomDeadParticipant, kille
     }
 }
 // Function to process a night iteration !!!where there's kiling!!!
+// Impure function - DOM manipulation
 function processNightInteractionWithKiller(nightNumber, randomDeadParticipant, killer) {
     console.log(`Processing night ${nightNumber}`);
     const currNight = document.getElementById(nightsIDs[nightNumber - 1]);
@@ -811,6 +834,7 @@ function processNightInteractionWithKiller(nightNumber, randomDeadParticipant, k
 }
 // Just like the day/night but with slightly different content
 // and also different CSS style via the different classes.
+// Impure function - DOM manipulation
 function generateWinnerStyle(participant) {
     const winner = document.getElementById("winner");
     console.log(`Creating new winner grid box`);
@@ -833,7 +857,13 @@ function generateWinnerStyle(participant) {
 }
 // Have to define them globally for this to work
 let haveYouPlayedThis = 0;
-// Function to perform the main game logic
+// !!! Function to perform the main game logic !!!
+// Impure function - calls getRandomNumberFromOneToArgumentIncluded() which contains Math.random()
+// ****************| calls getUniqueRandomElementsFromArray() which uses array.slice().sort(() => Math.random() - 0.5)
+// ****************| calls determineIfInteractionIsAtDayOrNightAndSetUp():
+// ****************|   *   - which calls setNightInteraction()
+// ****************|   *   - which calls setNightInteractionGrid() which has DOM manipulation
+// ****************| calls getRandomElementFromArray() which uses Math.random()
 function runGameCycle() {
     let participantsRemaining = participants.filter(participant => participant.name);
     const gameButton = document.getElementById("StartGame");
@@ -904,7 +934,14 @@ function runGameCycle() {
  *
  *
  */
-// functions like a main function
+// !!! Function to output the main game logic !!! (functions like a main function of a program)
+// Impure function - calls runGameCycle():
+// ****************|   *   - which calls getRandomNumberFromOneToArgumentIncluded() which contains Math.random()
+// ****************|   *   - which calls getUniqueRandomElementsFromArray() which uses array.slice().sort(() => Math.random() - 0.5)
+// ****************|   *   - which calls determineIfInteractionIsAtDayOrNightAndSetUp():
+// ****************|   *   *   -   which calls setNightInteraction()
+// ****************|   *   *   -   which calls setNightInteractionGrid() which has DOM manipulation
+// ****************|   *   - which calls getRandomElementFromArray() which uses Math.random()
 function startGame() {
     runGameCycle();
     console.log(`Game iterated`);
