@@ -620,27 +620,27 @@ function generateInteractionAvatars(participants: Participant[], count: number):
   });
 }
 
-function setDayInteractionGrid(participant1: Participant, participant2: Participant, participant3: Participant, participant4: Participant, element: HTMLElement, dayNumber: number) {
+function setDayInteractionGrid(participant: Participant[], participantCount: number, element: HTMLElement, dayNumber: number) {
   element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(231, 225, 143, 0.9); text-align: center;">Day ${dayNumber}</p>`;
   element.className = "dayGridBox";
   element.id = `day${dayNumber}GridBox`;
 
   let miniAvatars: HTMLImageElement[] = [];
 
-  if (participant2 !== participant3 && participant3 !== participant4) {
+  if (participantCount == 4) {
     // 4 participant interaction
-    miniAvatars = generateInteractionAvatars([participant1, participant2, participant3, participant4], 4);
-  } else if (participant2 !== participant3) {
+    miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2], participant[3]], 4);
+  } else if (participantCount == 3) {
     // 3 participant interaction
-    miniAvatars = generateInteractionAvatars([participant1, participant2, participant3], 3);
+    miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2]], 3);
   } else {
     // 2 participant interaction
-    miniAvatars = generateInteractionAvatars([participant1, participant2], 2);
+    miniAvatars = generateInteractionAvatars([participant[0], participant[1]], 2);
   }
 
   const participantName = document.createElement("a");
   participantName.className = "verticalCenter";
-  participantName.textContent = generateInteractionMessage(participant1, participant2, participant3, participant4);
+  participantName.textContent = generateInteractionMessage(participant, participantCount);
 
   const participantContainer = document.createElement("div");
   miniAvatars.forEach((miniAvatar) => participantContainer.appendChild(miniAvatar));
@@ -648,27 +648,27 @@ function setDayInteractionGrid(participant1: Participant, participant2: Particip
   element.appendChild(participantContainer);
 }
 
-function setNightInteractionGrid(participant1: Participant, participant2: Participant, participant3: Participant, participant4: Participant, element: HTMLElement, nightNumber: number) {
-  element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(231, 225, 143, 0.9); text-align: center;">Day ${nightNumber}</p>`;
+function setNightInteractionGrid(participant: Participant[], participantCount: number, element: HTMLElement, nightNumber: number) {
+  element.innerHTML = `<p style="font-size: 25px; margin:0; color: rgba(108, 163, 214, 0.9); text-align: center;">Night ${nightNumber}</p>`;
   element.className = "nightGridBox";
   element.id = `night${nightNumber}GridBox`;
 
   let miniAvatars: HTMLImageElement[] = [];
 
-  if (participant2 !== participant3 && participant3 !== participant4) {
+  if (participantCount == 4) {
     // 4 participant interaction
-    miniAvatars = generateInteractionAvatars([participant1, participant2, participant3, participant4], 4);
-  } else if (participant2 !== participant3) {
+    miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2], participant[3]], 4);
+  } else if (participantCount == 3) {
     // 3 participant interaction
-    miniAvatars = generateInteractionAvatars([participant1, participant2, participant3], 3);
+    miniAvatars = generateInteractionAvatars([participant[0], participant[1], participant[2]], 3);
   } else {
     // 2 participant interaction
-    miniAvatars = generateInteractionAvatars([participant1, participant2], 2);
+    miniAvatars = generateInteractionAvatars([participant[0], participant[1]], 2);
   }
 
   const participantName = document.createElement("a");
   participantName.className = "verticalCenter";
-  participantName.textContent = generateInteractionMessage(participant1, participant2, participant3, participant4);
+  participantName.textContent = generateInteractionMessage(participant, participantCount);
 
   const participantContainer = document.createElement("div");
   miniAvatars.forEach((miniAvatar) => participantContainer.appendChild(miniAvatar));
@@ -694,8 +694,9 @@ function determineIfKillingSomeoneOrDying(): boolean {
     return killOrDie = false;
   }
 }
-function generateTwoParticipantsInteraction(dayOrNight: number, participant1: Participant, participant2: Participant) {
-  if (dayOrNight % 2 === 0) { // day
+
+function generateTwoToFourParticipantsInteraction(dayOrNight: number, participant: Participant[], participantCount: number) {
+  if (dayOrNight % 2 == 0) { // day
     console.log(`Processing day ${dayOrNight/2+1}`);
     let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
     let dayDivExists = currDay?.querySelector('div') !== null;
@@ -704,7 +705,7 @@ function generateTwoParticipantsInteraction(dayOrNight: number, participant1: Pa
       let newDayGridBox = document.createElement("div");
   
       try {
-        setNightInteractionGrid(participant1, participant2, participant2, participant2, newDayGridBox, Math.floor(dayOrNight/2)+1) // Too many similar functions otherwise
+        setDayInteractionGrid(participant, participantCount, newDayGridBox, Math.floor(dayOrNight/2)) // Too many similar functions otherwise
         if (currDay) { currDay.appendChild(newDayGridBox); }
       } catch (e) {
         console.log(e);
@@ -719,73 +720,7 @@ function generateTwoParticipantsInteraction(dayOrNight: number, participant1: Pa
       let newNightGridBox = document.createElement("div");
   
       try {
-        setNightInteractionGrid(participant1, participant2, participant2, participant2, newNightGridBox, Math.floor(dayOrNight/2)+1) // Too many similar functions otherwise
-        if (currNight) { currNight.appendChild(newNightGridBox); }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  }
-}
-function generateThreeParticipantsInteraction(dayOrNight: number, participant1: Participant, participant2: Participant, participant3: Participant) {
-  if (dayOrNight % 2 === 0) { // day
-    console.log(`Processing day ${dayOrNight/2+1}`);
-    let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
-    let dayDivExists = currDay?.querySelector('div') !== null;
-    if (!dayDivExists) {
-      console.log(`Creating new day grid box`);
-      let newDayGridBox = document.createElement("div");
-  
-      try {
-        setNightInteractionGrid(participant1, participant2, participant3, participant3, newDayGridBox, Math.floor(dayOrNight/2)+1) // Too many similar functions otherwise
-        if (currDay) { currDay.appendChild(newDayGridBox); }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  } else { // night
-    console.log(`Processing night ${Math.floor(dayOrNight/2)+1}`);
-    let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2) - 1]);
-    let nightDivExists = currNight?.querySelector('div') !== null;
-    if (!nightDivExists) {
-      console.log(`Creating new night grid box`);
-      let newNightGridBox = document.createElement("div");
-  
-      try {
-        setNightInteractionGrid(participant1, participant2, participant3, participant3, newNightGridBox, Math.floor(dayOrNight/2)+1) // Too many similar functions otherwise
-        if (currNight) { currNight.appendChild(newNightGridBox); }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  }
-}
-function generateFourParticipantsInteraction(dayOrNight: number, participant1: Participant, participant2: Participant, participant3: Participant, participant4: Participant) {
-  if (dayOrNight % 2 === 0) { // day
-    console.log(`Processing day ${dayOrNight/2+1}`);
-    let currDay = document.getElementById(daysIDs[Math.floor(dayOrNight/2) - 1]);
-    let dayDivExists = currDay?.querySelector('div') !== null;
-    if (!dayDivExists) {
-      console.log(`Creating new day grid box`);
-      let newDayGridBox = document.createElement("div");
-  
-      try {
-        setNightInteractionGrid(participant1, participant2, participant3, participant4, newDayGridBox, Math.floor(dayOrNight/2)+1) // Too many similar functions otherwise
-        if (currDay) { currDay.appendChild(newDayGridBox); }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-  } else { // night
-    console.log(`Processing night ${Math.floor(dayOrNight/2)+1}`);
-    let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2) - 1]);
-    let nightDivExists = currNight?.querySelector('div') !== null;
-    if (!nightDivExists) {
-      console.log(`Creating new night grid box`);
-      let newNightGridBox = document.createElement("div");
-  
-      try {
-        setNightInteractionGrid(participant1, participant2, participant3, participant4, newNightGridBox, Math.floor(dayOrNight/2)+1) // Too many similar functions otherwise
+        setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight/2)) // Too many similar functions otherwise
         if (currNight) { currNight.appendChild(newNightGridBox); }
       } catch (e) {
         console.log(e);
@@ -820,31 +755,31 @@ function generateWayToDieMessage(personDying: Participant) {
   return killString;
 }
 
-function generateInteractionMessage(participant1: Participant, participant2: Participant, participant3: Participant, participant4: Participant, ) {
+function generateInteractionMessage(participant: Participant[], participantCount: number) {
   // Randomly select a kill message template
   
   let interactString;
-  if (participant2 !== participant3 && participant3 !== participant4) {
+  if (participantCount === 4) {
     // 4 participant interaction
     const fourParticipantsInteractionString = getRandomElementFromArray(fourParticipantsInteraction);
     interactString = fourParticipantsInteractionString
-    .replace(/\${participant1}/g, participant1.name)
-    .replace(/\${participant2}/g, participant2.name)
-    .replace(/\${participant3}/g, participant3.name)
-    .replace(/\${participant4}/g, participant4.name);
-  } else if (participant2 !== participant3) {
+    .replace(/\${participant1}/g, participant[0].name)
+    .replace(/\${participant2}/g, participant[1].name)
+    .replace(/\${participant3}/g, participant[2].name)
+    .replace(/\${participant4}/g, participant[3].name);
+  } else if (participantCount == 3) {
     // 3 participant interaction
     const threeParticipantsInteractionString = getRandomElementFromArray(threeParticipantsInteraction);
     interactString = threeParticipantsInteractionString
-    .replace(/\${participant1}/g, participant1.name)
-    .replace(/\${participant2}/g, participant2.name)
-    .replace(/\${participant3}/g, participant3.name);
+    .replace(/\${participant1}/g, participant[0].name)
+    .replace(/\${participant2}/g, participant[1].name)
+    .replace(/\${participant3}/g, participant[2].name)
   } else {
     // 2 participant interaction
     const twoParticipantsInteractionString = getRandomElementFromArray(twoParticipantsInteraction);
     interactString = twoParticipantsInteractionString
-    .replace(/\${participant1}/g, participant1.name)
-    .replace(/\${participant2}/g, participant2.name);
+    .replace(/\${participant1}/g, participant[0].name)
+    .replace(/\${participant2}/g, participant[1].name)
   }
   // Generate the killString by replacing placeholders with participant names
   
@@ -995,29 +930,27 @@ function runGameCycle() {
 
   for (let i = 0; i < nightsIDs.length + daysIDs.length; i++) {
     console.log(`Entering iteration ${i}`);
-    let killOrInteraction = getRandomNumber(0); // 2-4 = interaction (2,3,4) | the rest = kill
+    
+    
+    let killOrInteraction = getRandomNumber(4); // 2-4 = interaction (2,3,4) | the rest = kill
     let interactionParticipant: Participant[]; // since it can be Participant[] or just Participant
+    console.log(killOrInteraction);
     if (killOrInteraction >= 2 && killOrInteraction <= 4) {
-      if(participantsRemaining.length > 4 && killOrInteraction === 4) {
-        interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
-        generateFourParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1], interactionParticipant[2], interactionParticipant[3]);
+      if(participantsRemaining.length > 4 && killOrInteraction == 4) {
+      interactionParticipant = getFourUniqueRandomElementsFromArray(participantsRemaining);
+      generateTwoToFourParticipantsInteraction(i, interactionParticipant, 4);
         continue;
-      } else if (participantsRemaining.length > 3 && killOrInteraction === 3) {
+      } else if (participantsRemaining.length > 3 && killOrInteraction == 3) {
         interactionParticipant = getThreeUniqueRandomElementsFromArray(participantsRemaining);
-        generateThreeParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1], interactionParticipant[2]);
+        generateTwoToFourParticipantsInteraction(i, interactionParticipant, 3);
         continue;
-      } else if (participantsRemaining.length > 2 && killOrInteraction === 2) {
+      } else if (participantsRemaining.length > 2 && killOrInteraction == 2) {
         interactionParticipant = getTwoUniqueRandomElementsFromArray(participantsRemaining);
-        generateTwoParticipantsInteraction(i, interactionParticipant[0], interactionParticipant[1]);
+        generateTwoToFourParticipantsInteraction(i, interactionParticipant, 2);
         continue;
       }
-    } 
-    
-    
-    else {
+    } else {
       const randomDeadParticipant = getRandomElementFromArray(participantsRemaining);
-
-      
 
       let killOrBeKilled = determineIfKillingSomeoneOrDying();
       let killer = randomDeadParticipant;
@@ -1040,9 +973,12 @@ function runGameCycle() {
 
     }
 
-  }
-
+  } 
+  
 }
+
+
+
 
 /* 
  * 
