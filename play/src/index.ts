@@ -293,6 +293,11 @@ const participants: Participant[] = [
     name: "Nick",
     image: "../images/participants/participant50.jpg"
   },
+  {
+    id: "participant51",
+    name: "piro",
+    image: "../images/participants/participant51.png"
+  },
 ];
 
 
