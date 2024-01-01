@@ -345,6 +345,17 @@ const TWO_PARTICIPANTS_INTERACTIONS = [
 ];
 // 3 participants interacting
 const THREE_PARTICIPANTS_INTERACTIONS = [
+    // Rooftop (Raouka)
+    "${participant1} walked in on ${participant2} and ${participant3} doing insanely stupid stuff. <name> joined them regardless.",
+    "${participant1} found a skull. ${participant2} and ${participant3} were rattled.",
+    "${participant1} parkoured in the woods. ${participant2} and ${participant3} followed shortly after.",
+    "${participant1} cried. ${participant2} and ${participant3} were concerned about it.",
+    "${participant1} cried. ${participant2} and ${participant3} gave <name> some space.",
+    "${participant1} cried. ${participant2} and ${participant3} laughed about it. how cruel.",
+    "${participant1} chases after ${participant2}, who's chasing after ${participant3}. ",
+    "${participant1} tried killing ${participant2}, but only dealt 1 damage. ${participant3} was confused about it.",
+    "${participant1} threw a fake grenade. ${participant2} and ${participant3} weren't entertained.",
+    "${participant1} threw a live grenade. ${participant2} and ${participant3} ran away from it.",
     // 1Kill2Steal
     "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it).",
     "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it).",
