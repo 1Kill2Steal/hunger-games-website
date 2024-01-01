@@ -313,6 +313,9 @@ const TWO_PARTICIPANTS_INTERACTIONS = [
   "${participant1} thinks about killing ${participant2} but decides against it.",
   "${participant1} hits ${participant2} with a snowball",
   "${participant1} is building a camp together with ${participant2}.",
+  "${participant1} bought ${participant2} a shopping cart full of oranges to solve a math problem.",
+  "${participant1} bought ${participant2} a shopping cart full of Hu Tao plushies to solve a math problem. (They ended being a distraction)",
+  "${participant1} bought ${participant2} a shopping cart full of Furina plushies to solve a math problem. (They ended being a distraction)",
 ]
 
 // 3 participants interacting
@@ -428,6 +431,7 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
   "${personDying} spills ${killer}'s coffee and is strangled to death.",
   "${personDying} played Russian Rouconstte with ${killer}. ${personDying} perished.",
   "${killer} japping combo on ${personDying} and finished with uppercut",
+  "${personDying} was cropped badly by ${killer}.",
   // Add more kill message templates as needed
 ];
 
@@ -493,7 +497,8 @@ const WAYS_TO_DIE_TEMPLATES: string[] = [
   "${personDying} broke the first rule in Minecraft. Died of emotional damage.",
   "${personDying} tested if fall damage was disabled. turns out, it wasn't.",
   "${personDying} tried to study JavaScript.",
-  "${personDying} tried hacking but instead noclipped out of the world",
+  "${personDying} tried hacking but instead noclipped out of the world.",
+  "${personDying} encountered the man behind the slaughter."
 
   // TBA
 ]
