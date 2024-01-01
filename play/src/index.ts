@@ -42,7 +42,7 @@ type Participant = {
   image: string;
 };
 
-const participants: Participant[] = [
+const PARTICIPANTS: Participant[] = [
   {
     id: "participant1",
     name: "rcweebs",
@@ -303,7 +303,7 @@ const participants: Participant[] = [
 
 // 2 participants interacting
 
-const twoParticipantsInteraction = [
+const TWO_PARTICIPANTS_INTERACTIONS = [
   "${participant1} asks ${participant2} for a date. 👉👈",
   "${participant1} decides to prank ${participant2}.",
   "${participant1} ditches ${participant2}.",
@@ -316,7 +316,7 @@ const twoParticipantsInteraction = [
 
 // 3 participants interacting
 
-const threeParticipantsInteraction = [
+const THREE_PARTICIPANTS_INTERACTIONS = [
   "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it).",
   "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it).",
   "${participant1} stops ${participant2} from beating the shit out of ${participant3}.",
@@ -324,7 +324,7 @@ const threeParticipantsInteraction = [
 
 // 4 participants interacting
 
-const fourParticipantsInteraction = [
+const FOUR_PARTICIPANTS_INTERACTIONS = [
   "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}.",
   "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}.",
   "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
@@ -333,7 +333,7 @@ const fourParticipantsInteraction = [
 
 // `${killer}${waysToKill[partOne]}${personDying}${waysToKill[partTwo]}`
 
-const killMessageTemplates: string[] = [
+const KILL_MESSAGE_TEMPLATES: string[] = [
   "${personDying} couldn't handle ${killer}'s trolling and died.",
   "${killer} t-posed on ${personDying}.",
   "${personDying} rushed B but got AWP-ed by ${killer}",
@@ -428,7 +428,7 @@ const killMessageTemplates: string[] = [
 ];
 
 // `${personDying} ${waysToDie[x]}`
-const waysToDieTemplates: string[] = [
+const WAYS_TO_DIE_TEMPLATES: string[] = [
   "${personDying} slipped on a banana peel. (you silly goose)",
   "A meteorite fell on ${personDying}'s head. (relateable) { NO AoE SOMEHOW }",
   "${personDying} experienced kinetic energy attempting to scale a tree.",
@@ -495,21 +495,21 @@ const waysToDieTemplates: string[] = [
 /////////////////////////////////////////////////////////////////////////////////
 
 // counter for both as they're always equal in count for this project
-const dayAndNightCounter = 200;
+const DAY_AND_NIGHT_COUNTER = 200;
 
 // automate array creation (use more of the clients CPU ehehe)
-const daysIDs: string[] = [];
-for(let i = 1; i <= dayAndNightCounter; i++) {
+let daysIDs: string[] = [];
+for(let i = 1; i <= DAY_AND_NIGHT_COUNTER; i++) {
   daysIDs.push(`day${[i]}`);
 }
-const nightsIDs: string[] = [];
-for(let i = 1; i <= dayAndNightCounter; i++) {
+let nightsIDs: string[] = [];
+for(let i = 1; i <= DAY_AND_NIGHT_COUNTER; i++) {
   nightsIDs.push(`night${[i]}`);
 }
 
 // Create DOM - same reason
-const gameObjectsContainer = document.querySelector('.gameContainer');
-for (let i = 1; i <= dayAndNightCounter; i++) {
+const GAME_OBJECTS_CONTAINER = document.querySelector('.gameContainer');
+for (let i = 1; i <= DAY_AND_NIGHT_COUNTER; i++) {
   const dayElement = document.createElement('div');
   dayElement.className = 'gameObjDay';
   dayElement.id = `day${i}`;
@@ -518,22 +518,22 @@ for (let i = 1; i <= dayAndNightCounter; i++) {
   nightElement.className = 'gameObjNight';
   nightElement.id = `night${i}`;
 
-  const gameObjectsDiv = document.createElement('div');
-  gameObjectsDiv.className = 'gameObjects';
-  gameObjectsDiv.appendChild(dayElement);
-  gameObjectsDiv.appendChild(nightElement);
+  const GAME_OBJECTS_DIV = document.createElement('div');
+  GAME_OBJECTS_DIV.className = 'gameObjects';
+  GAME_OBJECTS_DIV.appendChild(dayElement);
+  GAME_OBJECTS_DIV.appendChild(nightElement);
 
-  gameObjectsContainer?.appendChild(gameObjectsDiv);
+  GAME_OBJECTS_CONTAINER?.appendChild(GAME_OBJECTS_DIV);
 }
 
 // Just 1 winner instance at the end of it.
 const winnerElement = document.createElement('div');
   winnerElement.className = 'gameObjWinner';
   winnerElement.id = `winner`;
-const gameObjectsDiv = document.createElement('div');
-  gameObjectsDiv.className = 'gameObjects';
-  gameObjectsDiv.appendChild(winnerElement);
-  gameObjectsContainer?.appendChild(gameObjectsDiv);
+const GAME_OBJECTS_DIV = document.createElement('div');
+  GAME_OBJECTS_DIV.className = 'gameObjects';
+  GAME_OBJECTS_DIV.appendChild(winnerElement);
+  GAME_OBJECTS_CONTAINER?.appendChild(GAME_OBJECTS_DIV);
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -561,18 +561,15 @@ const gameObjectsDiv = document.createElement('div');
  */
 
 // Random number between 1 and range (included)
-// Impure function - Math.random()
 function getRandomNumberFromOneToArgumentIncluded(range: number): number {
-  const randomNumber = Math.floor(Math.random() * range) + 1;
+  let randomNumber = Math.floor(Math.random() * range) + 1;
 
   return randomNumber;
 }
 
-// self-explanatory.
-// Impure function  - Math.random()
 function getRandomElementFromArray<T>(array: T[]): T {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  const randomElement = array[randomIndex];
+  let randomIndex = Math.floor(Math.random() * array.length);
+  let randomElement = array[randomIndex];
 
   return randomElement;
 }
@@ -580,36 +577,33 @@ function getRandomElementFromArray<T>(array: T[]): T {
 // It's important that the random interacting people are unique array elements
 // Therefore we shuffle the sorting by using Math.random() and get the first
 // elements from the sorted array with slicing
-// Impure function - Math.random()
 function getUniqueRandomElementsFromArray<T>(array: T[], count: number): T[] {
-  const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
+  let shuffledArray = array.slice().sort(() => Math.random() - 0.5);
   return shuffledArray.slice(0, count);
 }
 
 
 // Reusable self-explanatory functions
-// Pure function
 function dayParagraphTextContent(dayNumber: number): string {
-  const result = `<p class="dayParagraph">Day ${dayNumber}</p>`
-  return result;
+  const RESULT = `<p class="dayParagraph">Day ${dayNumber}</p>`
+  return RESULT;
 }
 // Pure function - similar to dayParagraphTextContent
 function nightParagraphTextContent(nightNumber: number): string {
-  const result = `<p class="nightParagraph">Night ${nightNumber}</p>`;
-  return result;
+  const RESULT = `<p class="nightParagraph">Night ${nightNumber}</p>`;
+  return RESULT;
 }
 
 
 // For modularity purpose the functions will take Participant[] and participantCount
 // Otherwise I'd repeat myself several times.
-// Impure function - DOM manipulation
 function generateInteractionAvatarsAndAssignTheirClassAndID(
   participants: Participant[],
   participantCount: number
   ): HTMLImageElement[] {
 
   return participants.slice(0, participantCount).map((participant) => {
-    const miniAvatar = document.createElement("img");
+    let miniAvatar = document.createElement("img");
     miniAvatar.src = participant.image;
     miniAvatar.title = participant.name;
     miniAvatar.alt = participant.name;
@@ -623,7 +617,6 @@ function generateInteractionAvatarsAndAssignTheirClassAndID(
 // This is again moved to a seperate function for modularity purpose,
 // because its reused in the day and night generation
 // Function to determine interaction participants based on count
-// Impure function - calls generateInteractionAvatarsAndAssignTheirClassAndID() which has DOM manipulation
 function determineInteractionUsersAvatarsGeneration(participant: Participant[], count: number): HTMLImageElement[] {
   const selectedParticipants = getUniqueRandomElementsFromArray(participant, count);
   return generateInteractionAvatarsAndAssignTheirClassAndID(selectedParticipants, count);
@@ -631,7 +624,6 @@ function determineInteractionUsersAvatarsGeneration(participant: Participant[], 
 
 
 // Day interactions for the users interacting
-// Impure function - DOM manipulation
 function setDayInteractionGrid(
   participant: Participant[],
   participantCount: number,
@@ -644,21 +636,20 @@ function setDayInteractionGrid(
   element.id = `day${dayNumber}GridBox`;
 
 
-  const miniAvatars: HTMLImageElement[] = determineInteractionUsersAvatarsGeneration(participant, participantCount);
+  let miniAvatars: HTMLImageElement[] = determineInteractionUsersAvatarsGeneration(participant, participantCount);
 
 
-  const participantName = document.createElement("a");
+  let participantName = document.createElement("a");
   participantName.className = "verticalCenter";
   participantName.textContent = generateInteractionMessage(participant, participantCount);
 
-  const participantContainer = document.createElement("div");
+  let participantContainer = document.createElement("div");
   miniAvatars.forEach((miniAvatar) => participantContainer.appendChild(miniAvatar));
   participantContainer.appendChild(participantName);
   element.appendChild(participantContainer);
 }
 
 // Night interactions for the users interacting
-// Impure function - DOM manipulation
 function setNightInteractionGrid(
   participant: Participant[],
   participantCount: number,
@@ -671,21 +662,20 @@ function setNightInteractionGrid(
   element.id = `night${nightNumber}GridBox`;
 
 
-  const miniAvatars: HTMLImageElement[] = determineInteractionUsersAvatarsGeneration(participant, participantCount);
+  let miniAvatars: HTMLImageElement[] = determineInteractionUsersAvatarsGeneration(participant, participantCount);
 
 
-  const participantName = document.createElement("a");
+  let participantName = document.createElement("a");
   participantName.className = "verticalCenter";
   participantName.textContent = generateInteractionMessage(participant, participantCount);
 
-  const participantContainer = document.createElement("div");
+  let participantContainer = document.createElement("div");
   miniAvatars.forEach((miniAvatar) => participantContainer.appendChild(miniAvatar));
   participantContainer.appendChild(participantName);
   element.appendChild(participantContainer);
 }
 
 // This function is getting called from the second one below it
-// Impure function - Calls setDayInteractionGrid() which has DOM manipulation
 function setUpDayInteraction (
   participant: Participant[],
   participantCount: number,
@@ -693,8 +683,8 @@ function setUpDayInteraction (
   ): void {
 
   console.log(`Processing day ${dayOrNight/2+1}`);
-  const currDay = document.getElementById(daysIDs[dayOrNight/2]);
-  const dayDivExists = currDay?.querySelector('div') !== null;
+  let currDay = document.getElementById(daysIDs[dayOrNight/2]);
+  let dayDivExists = currDay?.querySelector('div') !== null;
   if (!dayDivExists) {
     console.log(`Creating new day grid box`);
     const newDayGridBox = document.createElement("div");
@@ -710,7 +700,6 @@ function setUpDayInteraction (
 }
 
 // This function is getting called from the one below it
-// Impure function - Calls setNightInteractionGrid() which has DOM manipulation
 function setUpNightInteraction (
   participant: Participant[],
   participantCount: number,
@@ -718,11 +707,11 @@ function setUpNightInteraction (
   ): void {
 
   console.log(`Processing night ${Math.floor(dayOrNight/2)+1}`);
-  const currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2)]);
-  const nightDivExists = currNight?.querySelector('div') !== null;
+  let currNight = document.getElementById(nightsIDs[Math.floor(dayOrNight/2)]);
+  let nightDivExists = currNight?.querySelector('div') !== null;
   if (!nightDivExists) {
     console.log(`Creating new night grid box`);
-    const newNightGridBox = document.createElement("div");
+    let newNightGridBox = document.createElement("div");
 
     try {
       setNightInteractionGrid(participant, participantCount, newNightGridBox, Math.floor(dayOrNight/2) + 1);
@@ -735,8 +724,6 @@ function setUpNightInteraction (
 }
 
 // self-explanatory.
-// Impure function - Calls setNightInteraction() which calls setNightInteractionGrid() which has DOM manipulation
-// ****************| Calls setDayInteraction() which calls setDayInteractionGrid() which has DOM manipulation
 function determineIfInteractionIsAtDayOrNightAndSetUp(
   dayOrNight: number,
   participant: Participant[],
@@ -753,7 +740,6 @@ function determineIfInteractionIsAtDayOrNightAndSetUp(
 // Determines interatcing users then runs
 // a regulax expression on the corresponding
 // interacting users arrays
-// Impure function - Calls getRandomElementFromArray() which contains Math.random()
 function generateInteractionMessage(
   participant: Participant[],
   participantCount: number
@@ -764,27 +750,24 @@ function generateInteractionMessage(
   switch(participantCount) {
     case 4:
       // 4 participant interaction
-      const fourParticipantsInteractionString = getRandomElementFromArray(fourParticipantsInteraction);
-      interactString = fourParticipantsInteractionString
-      .replace(/\${participant1}/g, participant[0].name)
-      .replace(/\${participant2}/g, participant[1].name)
-      .replace(/\${participant3}/g, participant[2].name)
-      .replace(/\${participant4}/g, participant[3].name);
+      interactString = getRandomElementFromArray(FOUR_PARTICIPANTS_INTERACTIONS)
+        .replace(/\${participant1}/g, participant[0].name)
+        .replace(/\${participant2}/g, participant[1].name)
+        .replace(/\${participant3}/g, participant[2].name)
+        .replace(/\${participant4}/g, participant[3].name);
     break;
     case 3:
       // 3 participant interaction
-      const threeParticipantsInteractionString = getRandomElementFromArray(threeParticipantsInteraction);
-      interactString = threeParticipantsInteractionString
-      .replace(/\${participant1}/g, participant[0].name)
-      .replace(/\${participant2}/g, participant[1].name)
-      .replace(/\${participant3}/g, participant[2].name)
+      interactString = getRandomElementFromArray(THREE_PARTICIPANTS_INTERACTIONS)
+        .replace(/\${participant1}/g, participant[0].name)
+        .replace(/\${participant2}/g, participant[1].name)
+        .replace(/\${participant3}/g, participant[2].name)
     break;
     case 2:
       // 2 participant interaction
-      const twoParticipantsInteractionString = getRandomElementFromArray(twoParticipantsInteraction);
-      interactString = twoParticipantsInteractionString
-      .replace(/\${participant1}/g, participant[0].name)
-      .replace(/\${participant2}/g, participant[1].name)
+      interactString = getRandomElementFromArray(THREE_PARTICIPANTS_INTERACTIONS)
+        .replace(/\${participant1}/g, participant[0].name)
+        .replace(/\${participant2}/g, participant[1].name)
     break;
   }
   
@@ -796,16 +779,15 @@ function generateInteractionMessage(
 
 // true = kill, false = die
 // This is the rng on whether you die on your own or kill someone else
-// Pure function - odds are predetermined
 function determineIfKillingSomeoneOrDying(): boolean { 
   let killOrDie: Boolean;
   // 69/420 (funny) is around 0.164285714286% to die
-  const chanceToDie = 69;
-  const chanceToKill = 420;
+  const CHANCE_TO_DIE = 69;
+  const CHANCE_TO_KILL = 420;
 
-  const result = Math.random();
+  let result = Math.random();
 
-  if (result > chanceToDie/chanceToKill) {
+  if (result > CHANCE_TO_DIE/CHANCE_TO_KILL) {
     return killOrDie = true;
   } else {
     return killOrDie = false;
@@ -813,36 +795,27 @@ function determineIfKillingSomeoneOrDying(): boolean {
 }
 
 // function to generate the dying message:
-// const waysToDieTemplates: string[]
+// const WAYS_TO_DIE_TEMPLATES: string[]
 // by using regular expressions
-// Impure function - Calls getRandomElementFromArray() which contains Math.random()
 function generateWayToDieMessage(personDying: Participant): string {
-  // Randomly select a kill message template
-  const dieStringTemplate = getRandomElementFromArray(waysToDieTemplates);
 
-  // Generate the killString by replacing placeholders with participant names
-  const dieString = dieStringTemplate
+  // generate the way to die and regex replace it
+  let dieString = getRandomElementFromArray(WAYS_TO_DIE_TEMPLATES)
     .replace(/\${personDying}/g, personDying.name);
 
-  // return the randomly generated kill message
   return dieString;
 }
 
 // function to generate the killing message:
-// const killMessageTemplates: string[]
+// const KILL_MESSAGE_TEMPLATES: string[]
 // by using regular expressions
-// Impure function - Calls getRandomElementFromArray() which contains Math.random()
 function generateRandomKillMessage(personDying: Participant, killer: Participant): string {
 
-  // Randomly select a kill message template
-  const killStringTemplate = getRandomElementFromArray(killMessageTemplates);
+  // generate the way to kill and regex replace it
+  let killString = getRandomElementFromArray(KILL_MESSAGE_TEMPLATES)
+    .replace(/\${killer}/g, killer.name)
+    .replace(/\${personDying}/g, personDying.name);
 
-  // Generate the killString by replacing placeholders with participant names
-  const killString = killStringTemplate
-    .replace(/\${personDying}/g, personDying.name)
-    .replace(/\${killer}/g, killer.name);
-
-  // return the randomly generated kill message
   return killString;
 
 }
@@ -850,8 +823,7 @@ function generateRandomKillMessage(personDying: Participant, killer: Participant
 
 // Function to set up the avatar of the killer and dead participant
 // as well as the text box from the data section
-// killMessageTemplates: string[]
-// Impure function - DOM manipulation
+// KILL_MESSAGE_TEMPLATES: string[]
 function generateDeadParticipantAvatarAndText(
   miniAvatar: HTMLImageElement,
   participantName: HTMLAnchorElement,
@@ -868,8 +840,7 @@ function generateDeadParticipantAvatarAndText(
 
 // Function to set up the avatar of the killer and dead participant
 // as well as the text box from the data section
-// killMessageTemplates: string[]
-// Impure function - DOM manipulation
+// KILL_MESSAGE_TEMPLATES: string[]
 function generateKillerAndDeadParticipantAvatarAndText(
   miniAvatar: HTMLImageElement,
   secondAvatar: HTMLImageElement,
@@ -893,7 +864,6 @@ function generateKillerAndDeadParticipantAvatarAndText(
 
 
 // Function to set up the grid style in the day !!!where there's kiling!!!
-// Impure function - DOM manipulation
 function setDayGridStyleWithKiller(
   element: HTMLElement,
   dayNumber: number,
@@ -905,9 +875,9 @@ function setDayGridStyleWithKiller(
   element.className = "dayGridBox";
   element.id = `day${dayNumber}GridBox`;
   
-  const miniAvatar = document.createElement("img");
-  const secondAvatar = document.createElement("img");
-  const participantName = document.createElement("a");
+  let miniAvatar = document.createElement("img");
+  let secondAvatar = document.createElement("img");
+  let participantName = document.createElement("a");
 
   if (killer === deadParticipant) {
     generateDeadParticipantAvatarAndText(miniAvatar, participantName, deadParticipant);
@@ -924,7 +894,6 @@ function setDayGridStyleWithKiller(
 }
 
 // Function to set up the grid style in the night !!!where there's kiling!!!
-// Impure function - DOM manipulation
 function setNightStyleWithKiller(
   element: HTMLElement,
   nightNumber: number,
@@ -936,11 +905,9 @@ function setNightStyleWithKiller(
   element.className = "nightGridBox";
   element.id = `night${nightNumber}GridBox`;
 
-  const miniAvatar = document.createElement("img");
-  
-  const participantName = document.createElement("a");
-
-  const participantContainer = document.createElement("div");
+  let miniAvatar = document.createElement("img");
+  let participantName = document.createElement("a");
+  let participantContainer = document.createElement("div");
 
   if (killer === deadParticipant) {
     miniAvatar.src = deadParticipant.image;
@@ -954,7 +921,7 @@ function setNightStyleWithKiller(
     miniAvatar.className = "miniAvatar";
     miniAvatar.id = deadParticipant.id;
 
-    const secondAvatar = document.createElement("img");
+    let secondAvatar = document.createElement("img");
     secondAvatar.src = killer.image;
     secondAvatar.className = "miniAvatarKiller";
     secondAvatar.id = killer.id;
@@ -972,7 +939,6 @@ function setNightStyleWithKiller(
 
 
 // Function to process a day iteration !!!where there's kiling!!!
-// Impure function - DOM manipulation
 function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipant: Participant, killer: Participant): void {
   console.log(`Processing day ${dayNumber}`);
   const currDay = document.getElementById(daysIDs[dayNumber - 1]);
@@ -994,7 +960,6 @@ function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipan
 
 
 // Function to process a night iteration !!!where there's kiling!!!
-// Impure function - DOM manipulation
 function processNightInteractionWithKiller(nightNumber: number, randomDeadParticipant: Participant, killer: Participant): void {
   
   console.log(`Processing night ${nightNumber}`);
@@ -1016,7 +981,6 @@ function processNightInteractionWithKiller(nightNumber: number, randomDeadPartic
 
 // Just like the day/night but with slightly different content
 // and also different CSS style via the different classes.
-// Impure function - DOM manipulation
 function generateWinnerStyle(participant: Participant): void {
   const winner = document.getElementById("winner");
 
@@ -1052,14 +1016,8 @@ function generateWinnerStyle(participant: Participant): void {
 let haveYouPlayedThis = 0;
 
 // !!! Function to perform the main game logic !!!
-// Impure function - calls getRandomNumberFromOneToArgumentIncluded() which contains Math.random()
-// ****************| calls getUniqueRandomElementsFromArray() which uses array.slice().sort(() => Math.random() - 0.5)
-// ****************| calls determineIfInteractionIsAtDayOrNightAndSetUp():
-// ****************|   *   - which calls setNightInteraction()
-// ****************|   *   - which calls setNightInteractionGrid() which has DOM manipulation
-// ****************| calls getRandomElementFromArray() which uses Math.random()
 function runGameCycle() {
-  let participantsRemaining = participants.filter(participant => participant.name);
+  let participantsRemaining = PARTICIPANTS.filter(participant => participant.name);
   const gameButton = document.getElementById("StartGame");
   gameButton != undefined ? gameButton.innerText = "Replay" : console.log("gameButton is undefined");
 
