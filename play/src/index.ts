@@ -489,7 +489,8 @@ const WAYS_TO_DIE_TEMPLATES: string[] = [
   "${personDying} fails the cake or fake challenge and eats a rusty nail.",
   "${personDying} got sent to the fortress of meropide and is clawed to death by cats.",
   "${personDying} experienced 1/2 mv^2.",
-  "${personDying} broke the first rule in Minecraft. Died of emotional damage."
+  "${personDying} broke the first rule in Minecraft. Died of emotional damage.",
+  "${personDying} tested if fall damage was disabled. turns out, it wasn't.",
 
   // TBA
 ]
