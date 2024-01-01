@@ -302,6 +302,7 @@ const ONE_PARTICIPANT_INTERACTIONS = [
     "${participant1} didn't want to sleep.",
     "${participant1} and the sun had a staring contest. ${participant1} lost, and was blind for 5 minutes.",
     "${participant1} crafted steel and flint, instead of flint and steel. it doesn't work.",
+    "${participant1} was the one who asked.",
 ];
 // 2 participants interacting
 const TWO_PARTICIPANTS_INTERACTIONS = [
@@ -317,6 +318,7 @@ const TWO_PARTICIPANTS_INTERACTIONS = [
     "${participant1} bought ${participant2} a shopping cart full of Hu Tao plushies to solve a math problem. (They ended being a distraction)",
     "${participant1} bought ${participant2} a shopping cart full of Furina plushies to solve a math problem. (They ended being a distraction)",
     "${participant1} and ${participant2} excavated an entire mountain, they still haven't found who asked",
+    "${participant1} lied!!!!!!!!!!!!!!!! ${participant2} became angy.",
     // 1Kill2Steal
     "${participant1} asks ${participant2} for a date. 👉👈",
     "${participant1} decides to prank ${participant2}.",
@@ -436,6 +438,7 @@ const KILL_MESSAGE_TEMPLATES = [
     "${personDying} was cropped badly by ${killer}.",
     "${personDying} became ${killer}'s emergency food",
     "${killer} betrayed ${personDying} using a waxed lightly weathered cut copper stairs.",
+    "${killer} jumpscared ${personDying} with a leaf. ${personDying} then later died of a heart attack.",
     // 1Kill2Steal
     "${personDying} couldn't handle ${killer}'s trolling and died.",
     "${killer} t-posed on ${personDying}.",
