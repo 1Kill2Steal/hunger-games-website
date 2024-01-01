@@ -765,7 +765,7 @@ function generateInteractionMessage(
     break;
     case 2:
       // 2 participant interaction
-      interactString = getRandomElementFromArray(THREE_PARTICIPANTS_INTERACTIONS)
+      interactString = getRandomElementFromArray(TWO_PARTICIPANTS_INTERACTIONS)
         .replace(/\${participant1}/g, participant[0].name)
         .replace(/\${participant2}/g, participant[1].name)
     break;
