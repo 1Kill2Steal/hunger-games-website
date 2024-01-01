@@ -328,6 +328,8 @@ const FOUR_PARTICIPANTS_INTERACTIONS = [
   "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}.",
   "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}.",
   "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
+  "${participant1} takes a bath together with ${participant2}, ${participant3} and ${participant4}",
+  "${participant1}, ${participant2}, ${participant3} and ${participant4} all have a stand off and they decide to spare each other.",
 ]
 
 
@@ -423,7 +425,8 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
   "${killer} picks up a cursed sword and is possessed by it, killing ${personDying}.",
   "${killer} sabotages ${personDying}'s weapon, causing ${personDying} to end up end because they were using a broken weapon.",
   "${personDying} spills ${killer}'s coffee and is strangled to death.",
-  "${personDying} played Russian Rouconstte with ${killer}. ${personDying} perished."
+  "${personDying} played Russian Rouconstte with ${killer}. ${personDying} perished.",
+  "${killer} japping combo on ${personDying} and finished with uppercut",
   // Add more kill message templates as needed
 ];
 
@@ -486,6 +489,7 @@ const WAYS_TO_DIE_TEMPLATES: string[] = [
   "${personDying} fails the cake or fake challenge and eats a rusty nail.",
   "${personDying} got sent to the fortress of meropide and is clawed to death by cats.",
   "${personDying} experienced 1/2 mv^2.",
+  "${personDying} broke the first rule in Minecraft. Died of emotional damage."
 
   // TBA
 ]
