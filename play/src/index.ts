@@ -24,8 +24,8 @@
  * *******|  Emper got the data from the people at chat.
  * *******|  Also all the participants for their names and pics
  * 
- * Date: 27/12/2023 (DD/MM/YYYY)
- * Making static websites is a fucking pain.
+ * Date: 1/1/2024 (DD/MM/YYYY)
+ * 
  * 
  * 
  * 
@@ -601,8 +601,8 @@ const GAME_OBJECTS_DIV = document.createElement('div');
  *  Well you see, I tried bundling it, but it didn't work!
  * 
  * Author: 1Kill2Steal
- * Date: 27/12/2023 (DD/MM/YYYY)
- * Making static websites is a fucking pain.
+ * Date: 1/1/2024 (DD/MM/YYYY)
+ * 
  * 
  * 
  * 
@@ -1158,8 +1158,8 @@ function runGameCycle() {
  * ! ! ! MAIN PROGRAM PART ! ! !
  * 
  * Author: 1Kill2Steal
- * Date: 27/12/2023 (DD/MM/YYYY)
- * Making static websites is a fucking pain.
+ * Date: 1/1/2024 (DD/MM/YYYY)
+ * 
  * 
  * 
  * 
