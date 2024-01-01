@@ -316,6 +316,7 @@ const TWO_PARTICIPANTS_INTERACTIONS = [
   "${participant1} bought ${participant2} a shopping cart full of oranges to solve a math problem.",
   "${participant1} bought ${participant2} a shopping cart full of Hu Tao plushies to solve a math problem. (They ended being a distraction)",
   "${participant1} bought ${participant2} a shopping cart full of Furina plushies to solve a math problem. (They ended being a distraction)",
+  "${participant1} and ${participant2} excavated an entire mountain, they still haven't found who asked",
 ]
 
 // 3 participants interacting
@@ -334,6 +335,7 @@ const FOUR_PARTICIPANTS_INTERACTIONS = [
   "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
   "${participant1} takes a bath together with ${participant2}, ${participant3} and ${participant4}",
   "${participant1}, ${participant2}, ${participant3} and ${participant4} all have a stand off and they decide to spare each other.",
+  "${participant1}, ${participant2}, ${participant3} and ${participant4} are farming artifacts in domain."
 ]
 
 
@@ -432,6 +434,7 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
   "${personDying} played Russian Rouconstte with ${killer}. ${personDying} perished.",
   "${killer} japping combo on ${personDying} and finished with uppercut",
   "${personDying} was cropped badly by ${killer}.",
+  "${personDying} became ${killer}'s emergency food",
   // Add more kill message templates as needed
 ];
 
