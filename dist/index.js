@@ -648,7 +648,7 @@ function generateInteractionMessage(participant, participantCount) {
             break;
         case 2:
             // 2 participant interaction
-            interactString = getRandomElementFromArray(THREE_PARTICIPANTS_INTERACTIONS)
+            interactString = getRandomElementFromArray(TWO_PARTICIPANTS_INTERACTIONS)
                 .replace(/\${participant1}/g, participant[0].name)
                 .replace(/\${participant2}/g, participant[1].name);
             break;
@@ -903,13 +903,6 @@ function runGameCycle() {
  *
  */
 // !!! Function to output the main game logic !!! (functions like a main function of a program)
-// Impure function - calls runGameCycle():
-// ****************|   *   - which calls getRandomNumberFromOneToArgumentIncluded() which contains Math.random()
-// ****************|   *   - which calls getUniqueRandomElementsFromArray() which uses array.slice().sort(() => Math.random() - 0.5)
-// ****************|   *   - which calls determineIfInteractionIsAtDayOrNightAndSetUp():
-// ****************|   *   *   -   which calls setNightInteraction()
-// ****************|   *   *   -   which calls setNightInteractionGrid() which has DOM manipulation
-// ****************|   *   - which calls getRandomElementFromArray() which uses Math.random()
 function startGame() {
     runGameCycle();
     console.log(`Game iterated`);
