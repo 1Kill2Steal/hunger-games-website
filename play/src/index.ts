@@ -312,6 +312,7 @@ const TWO_PARTICIPANTS_INTERACTIONS = [
   "${participant1} and ${participant2} eat some funky mushrooms together.",
   "${participant1} thinks about killing ${participant2} but decides against it.",
   "${participant1} hits ${participant2} with a snowball",
+  "${participant1} is building a camp together with ${participant2}.",
 ]
 
 // 3 participants interacting
@@ -491,7 +492,8 @@ const WAYS_TO_DIE_TEMPLATES: string[] = [
   "${personDying} experienced 1/2 mv^2.",
   "${personDying} broke the first rule in Minecraft. Died of emotional damage.",
   "${personDying} tested if fall damage was disabled. turns out, it wasn't.",
-  "${personDying} tried to study JavaScript."
+  "${personDying} tried to study JavaScript.",
+  "${personDying} tried hacking but instead noclipped out of the world",
 
   // TBA
 ]
