@@ -24,7 +24,7 @@ const PARTICIPANTS = [
     },
     {
         id: "participant3",
-        name: "mqc",
+        name: "Aishira",
         image: "../images/participants/participant3.jpg"
     },
     {
@@ -129,7 +129,7 @@ const PARTICIPANTS = [
     },
     {
         id: "participant24",
-        name: "Aishira",
+        name: "Mqc",
         image: "../images/participants/participant24.png"
     },
     {
@@ -282,7 +282,12 @@ const ONE_PARTICIPANT_INTERACTIONS = [
     "${participant1} acquired coal.",
     "${participant1} killed one.. two.. THREE ANTS!",
     "${participant1} thought about flying.",
-    "${participant1} got rickrolled for the (random number)th time.",
+    "${participant1} got rickrolled for the 69th time.",
+    "${participant1} got rickrolled for the 420th time.",
+    "${participant1} got rickrolled for the 2462th time.",
+    "${participant1} got rickrolled for the 1365th time.",
+    "${participant1} got rickrolled for the 246th time.",
+    "${participant1} got rickrolled for the 135th time.",
     "${participant1} decided to cry.",
     "${participant1} decided to go insane.",
     "${participant1} decided to be depressed.",
