@@ -1109,13 +1109,6 @@ function runGameCycle() {
 
 
 // !!! Function to output the main game logic !!! (functions like a main function of a program)
-// Impure function - calls runGameCycle():
-// ****************|   *   - which calls getRandomNumberFromOneToArgumentIncluded() which contains Math.random()
-// ****************|   *   - which calls getUniqueRandomElementsFromArray() which uses array.slice().sort(() => Math.random() - 0.5)
-// ****************|   *   - which calls determineIfInteractionIsAtDayOrNightAndSetUp():
-// ****************|   *   *   -   which calls setNightInteraction()
-// ****************|   *   *   -   which calls setNightInteractionGrid() which has DOM manipulation
-// ****************|   *   - which calls getRandomElementFromArray() which uses Math.random()
 function startGame(): void {
 
   runGameCycle();
