@@ -486,6 +486,7 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
   // Rooftop (Raouka)
   "${personDying} was cropped badly by ${killer}.",
   "${personDying} became ${killer}'s emergency food",
+  "${killer} betrayed ${personDying} using a waxed lightly weathered cut copper stairs.",
 
   // 1Kill2Steal
   "${personDying} couldn't handle ${killer}'s trolling and died.",
