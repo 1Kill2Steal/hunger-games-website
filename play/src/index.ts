@@ -301,30 +301,50 @@ const PARTICIPANTS: Participant[] = [
 ];
 
 
+// 1 participant interaction
+
+const ONE_PARTICIPANT_INTERACTIONS = [
+
+  // Rooftop (Raouka)
+  "${participant1} tried enchanting a dirt block. nothing happened.",
+  "${participant1} tried enchanting gunpowder, ending up with their tent in ashes.",
+
+]
+
 // 2 participants interacting
 
 const TWO_PARTICIPANTS_INTERACTIONS = [
-  "${participant1} asks ${participant2} for a date. 👉👈",
-  "${participant1} decides to prank ${participant2}.",
-  "${participant1} ditches ${participant2}.",
+
+  // Emper
   "${participant1} and ${participant2} cuddle for warmth.",
   "${participant1} is chased by ${participant2}.",
   "${participant1} and ${participant2} eat some funky mushrooms together.",
   "${participant1} thinks about killing ${participant2} but decides against it.",
   "${participant1} hits ${participant2} with a snowball",
   "${participant1} is building a camp together with ${participant2}.",
+  // Rooftop (Raouka)
   "${participant1} bought ${participant2} a shopping cart full of oranges to solve a math problem.",
   "${participant1} bought ${participant2} a shopping cart full of Hu Tao plushies to solve a math problem. (They ended being a distraction)",
   "${participant1} bought ${participant2} a shopping cart full of Furina plushies to solve a math problem. (They ended being a distraction)",
   "${participant1} and ${participant2} excavated an entire mountain, they still haven't found who asked",
+
+  // 1Kill2Steal
+  "${participant1} asks ${participant2} for a date. 👉👈",
+  "${participant1} decides to prank ${participant2}.",
+  "${participant1} ditches ${participant2}.",
+
 ]
 
 // 3 participants interacting
 
 const THREE_PARTICIPANTS_INTERACTIONS = [
+  // 1Kill2Steal
   "${participant1} tells ${participant2} and ${participant3} that they suck (they didn't like it).",
   "${participant1} tells ${participant2} and ${participant3} that they suck (they liked it).",
   "${participant1} stops ${participant2} from beating the shit out of ${participant3}.",
+
+  // Coco
+  "${participant1} has invaded ${participant2} and ${participant3}'s Bedroom. (${participant1} is pissed)",
 ]
 
 // 4 participants interacting
@@ -335,16 +355,16 @@ const FOUR_PARTICIPANTS_INTERACTIONS = [
   "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
   "${participant1} takes a bath together with ${participant2}, ${participant3} and ${participant4}",
   "${participant1}, ${participant2}, ${participant3} and ${participant4} all have a stand off and they decide to spare each other.",
-  "${participant1}, ${participant2}, ${participant3} and ${participant4} are farming artifacts in domain."
+  // Coco
+  "${participant1}, ${participant2}, ${participant3} and ${participant4} are farming artifacts in domain.",
+
 ]
 
 
 // `${killer}${waysToKill[partOne]}${personDying}${waysToKill[partTwo]}`
 
 const KILL_MESSAGE_TEMPLATES: string[] = [
-  "${personDying} couldn't handle ${killer}'s trolling and died.",
-  "${killer} t-posed on ${personDying}.",
-  "${personDying} rushed B but got AWP-ed by ${killer}",
+  // Emper
   "${killer} and ${personDying} started fighting over resources. It ended with a knife in ${personDying}'s abdomen.",
   "${killer} backstabs ${personDying} with a katana despite their promise to team up.",
   "${killer} severely wounds ${personDying} and left them to bleed to death.",
@@ -433,15 +453,21 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
   "${personDying} spills ${killer}'s coffee and is strangled to death.",
   "${personDying} played Russian Rouconstte with ${killer}. ${personDying} perished.",
   "${killer} japping combo on ${personDying} and finished with uppercut",
+  
+  // Rooftop (Raouka)
   "${personDying} was cropped badly by ${killer}.",
   "${personDying} became ${killer}'s emergency food",
-  // Add more kill message templates as needed
+
+  // 1Kill2Steal
+  "${personDying} couldn't handle ${killer}'s trolling and died.",
+  "${killer} t-posed on ${personDying}.",
+  "${personDying} rushed B but got AWP-ed by ${killer}",
+
 ];
 
 // `${personDying} ${waysToDie[x]}`
 const WAYS_TO_DIE_TEMPLATES: string[] = [
-  "${personDying} slipped on a banana peel. (you silly goose)",
-  "A meteorite fell on ${personDying}'s head. (relateable) { NO AoE SOMEHOW }",
+  // Emper
   "${personDying} experienced kinetic energy attempting to scale a tree.",
   "${personDying} walks over a land mine.",
   "${personDying} dies from an infection.",
@@ -497,11 +523,19 @@ const WAYS_TO_DIE_TEMPLATES: string[] = [
   "${personDying} fails the cake or fake challenge and eats a rusty nail.",
   "${personDying} got sent to the fortress of meropide and is clawed to death by cats.",
   "${personDying} experienced 1/2 mv^2.",
+
+  // Rooftop (Raouka)
   "${personDying} broke the first rule in Minecraft. Died of emotional damage.",
   "${personDying} tested if fall damage was disabled. turns out, it wasn't.",
-  "${personDying} tried to study JavaScript.",
   "${personDying} tried hacking but instead noclipped out of the world.",
-  "${personDying} encountered the man behind the slaughter."
+  "${personDying} encountered the man behind the slaughter.",
+  "${personDying} forgot their happy thought.",
+
+  // 1Kill2Steal
+  "${personDying} slipped on a banana peel. (you silly goose)",
+  "A meteorite fell on ${personDying}'s head. (relateable) { NO AoE SOMEHOW }",
+  "${personDying} forgot to do their artifacts and capped up on resin.",
+  "${personDying} tried to study JavaScript.",
 
   // TBA
 ]
@@ -785,6 +819,11 @@ function generateInteractionMessage(
         .replace(/\${participant1}/g, participant[0].name)
         .replace(/\${participant2}/g, participant[1].name)
     break;
+    case 1:
+      // 1 participant interaction
+      interactString = getRandomElementFromArray(ONE_PARTICIPANT_INTERACTIONS)
+        .replace(/\${participant1}/g, participant[0].name)
+    break;
   }
   
   // return the randomly generated interaction message
@@ -846,7 +885,7 @@ function generateDeadParticipantAvatarAndText(
   deadParticipant: Participant
   ): void {
   miniAvatar.src = deadParticipant.image;
-  miniAvatar.className = "miniAvatarSoloDead";
+  miniAvatar.className = "miniAvatar";
   miniAvatar.id = deadParticipant.id;
   
   participantName.className = "verticalCenter";
@@ -927,7 +966,7 @@ function setNightStyleWithKiller(
 
   if (killer === deadParticipant) {
     miniAvatar.src = deadParticipant.image;
-    miniAvatar.className = "miniAvatarSoloDead";
+    miniAvatar.className = "miniAvatar";
     miniAvatar.id = deadParticipant.id;
     
     participantName.className = "verticalCenter";
@@ -1045,27 +1084,32 @@ function runGameCycle() {
     console.log(`Entering iteration ${i}`);
     
     
-    const killOrInteraction = getRandomNumberFromOneToArgumentIncluded(4); // 1-3 = interaction (2,3,4) | the rest = kill
+    const killOrInteraction = getRandomNumberFromOneToArgumentIncluded(5); // 1-3 = interaction (2,3,4) | the rest = kill
     let interactionParticipant: Participant[]; // since it can be Participant[] or just Participant
     console.log(killOrInteraction);
     console.log(participantsRemaining.length);
 
-    if (killOrInteraction >= 1 && killOrInteraction <= 3) {
+    if (killOrInteraction >= 1 && killOrInteraction <= 4) {
       switch (true) { // when i try to do switch(killOrInteraction >= 1 && killOrInteraction <= 3) it doesn't work as intended
-        case participantsRemaining.length > 4 && killOrInteraction === 3:
+        case participantsRemaining.length > 4 && killOrInteraction === 4:
           interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 4);
           determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 4);
-          break;
+        break;
         
-        case participantsRemaining.length > 3 && killOrInteraction === 2:
+        case participantsRemaining.length > 3 && killOrInteraction === 3:
           interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 3);
           determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 3);
-          break;
+        break;
       
-        case participantsRemaining.length > 2 && killOrInteraction === 1:
+        case participantsRemaining.length > 2 && killOrInteraction === 2:
           interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 2);
           determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 2);
-          break;
+        break;
+
+        case participantsRemaining.length > 1 && killOrInteraction === 1:
+          interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 1);
+          determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 1);
+        break;
       }
       
     } else {
