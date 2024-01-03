@@ -1091,21 +1091,24 @@ function runGameCycle() {
         let interactionParticipant; // since it can be Participant[] or just Participant
         console.log(killOrInteraction);
         console.log(participantsRemaining.length);
-        if (killOrInteraction >= 1 && killOrInteraction <= 4) {
+        // You know whats the worst about this change in the condition: && participantsRemaining.length > 4
+        // I DONT HAVE A CLUE WHY IT BUGS AT THE END IF ITS LESS THAN OR EQUAL TO FOUR!
+        // FOR SOME GODDAMN REASON IT DOESN'T WORK PROPERLY IF ITS NOT LIKE THAT!!
+        if ((killOrInteraction >= 1 && killOrInteraction <= 4) && participantsRemaining.length > 4) {
             switch (true) { // when i try to do switch(killOrInteraction >= 1 && killOrInteraction <= 4) it doesn't work as intended
-                case participantsRemaining.length > 4 && killOrInteraction === 4:
+                case killOrInteraction === 4:
                     interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 4);
                     determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 4);
                     break;
-                case participantsRemaining.length > 3 && killOrInteraction === 3:
+                case killOrInteraction === 3:
                     interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 3);
                     determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 3);
                     break;
-                case participantsRemaining.length > 2 && killOrInteraction === 2:
+                case killOrInteraction === 2:
                     interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 2);
                     determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 2);
                     break;
-                case participantsRemaining.length > 1 && killOrInteraction === 1:
+                case killOrInteraction === 1:
                     interactionParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 1);
                     determineIfInteractionIsAtDayOrNightAndSetUp(i, interactionParticipant, 1);
                     break;
@@ -1115,7 +1118,7 @@ function runGameCycle() {
             let randomDeadParticipant = [];
             let howManyKilled = getRandomNumberFromOneToArgumentIncluded(20);
             let killer = randomDeadParticipant[0];
-            if (howManyKilled >= 1 && howManyKilled <= 10) {
+            if (howManyKilled >= 1 && howManyKilled <= 10 || participantsRemaining.length === 1) {
                 randomDeadParticipant[0] = getRandomElementFromArray(participantsRemaining);
                 let killOrBeKilled = determineIfKillingSomeoneOrDying();
                 if (killOrBeKilled) {
