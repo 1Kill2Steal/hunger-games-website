@@ -545,21 +545,30 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
 
 ];
 
+// "${killer} ${personDying2} ${personDying1}", comment exists for copy-paste reasons
 const TWO_KILL_MESSAGE_TEMPLATES: string[] = [
-  "1 ${killer} ${personDying1} ${personDying2}",
-  "2 ${killer} ${personDying2} ${personDying1}",
+  // 1Kill2Steal
+  "${killer} did a double kill (${personDying1} ${personDying2})",
+  "${killer} shot ${personDying2} but accidentally ended up killing ${personDying1} as well...",
+  "${personDying2} tried to kill ${personDying1} but ${killer} decided to kill both (they're very sane - source: trust me bro)",
 
 ]
 
+// "${killer} ${personDying1} ${personDying2} ${personDying3}",
 const THREE_KILL_MESSAGE_TEMPLATES: string[] = [
-  "1 ${killer} ${personDying1} ${personDying2} ${personDying3}",
-  "2 ${killer} ${personDying3} ${personDying2} ${personDying1}",
+  // 1Kill2Steal
+  "${killer} did the hippidy hoppity (and that made: ${personDying1} ${personDying2} ${personDying3} die from cringe) ",
+  "${killer} gave a boombastic side eye to: ${personDying1}, ${personDying2} and ${personDying3} and they died from ${killer}'s charm",
 
 ]
 
+// "${killer} ${personDying1} ${personDying2} ${personDying3} ${personDying4}",
 const FOUR_KILL_MESSAGE_TEMPLATES: string[] = [
-  "1 ${killer} ${personDying1} ${personDying2} ${personDying3} ${personDying4}",
-  "2 ${killer} ${personDying3} ${personDying2} ${personDying1} ${personDying4}",
+  // 1Kill2Steal
+  "${killer} DID A TRIPPLE KILL!!! (${personDying1} ${personDying2} ${personDying3} ${personDying4})",
+  "${killer} decided to go rampage and killed ${personDying1}, ${personDying2}, ${personDying3} and ${personDying4}",
+  "${killer} woke up and chose violence. (Killed: ${personDying1} ${personDying2} ${personDying3} ${personDying4})",
+  "${killer} did a: QUADRA KILL! (Killed: ${personDying1} ${personDying2} ${personDying3} ${personDying4}) (sorry guys, penta kill is impossible here)",
 
 ]
 
@@ -651,6 +660,7 @@ const WAYS_TO_DIE_TEMPLATES: string[] = [
   "A meteorite fell on ${personDying}'s head. (relateable) { NO AoE SOMEHOW }",
   "${personDying} forgot to do their artifacts and capped up on resin.",
   "${personDying} tried to study JavaScript.",
+  "${personDying} was sentenced to 1 game of League of Legends.",
 
   // TBA
 ]
@@ -1062,7 +1072,7 @@ function generateRandomKillMessage(personDying: Participant[], killer: Participa
   if (killedCount === 1) {
     killString = getRandomElementFromArray(KILL_MESSAGE_TEMPLATES)
     .replace(/\${killer}/g, killer.name)
-    .replace(/\${personDying}/g, personDying[1].name);
+    .replace(/\${personDying}/g, personDying[0].name);
     return killString;
   }
   if (killedCount === 2) {
@@ -1078,6 +1088,15 @@ function generateRandomKillMessage(personDying: Participant[], killer: Participa
     .replace(/\${personDying1}/g, personDying[1].name)
     .replace(/\${personDying2}/g, personDying[2].name)
     .replace(/\${personDying3}/g, personDying[3].name);
+    return killString;
+  }
+  if (killedCount === 4) {
+    killString = getRandomElementFromArray(FOUR_KILL_MESSAGE_TEMPLATES)
+    .replace(/\${killer}/g, killer.name)
+    .replace(/\${personDying1}/g, personDying[1].name)
+    .replace(/\${personDying2}/g, personDying[2].name)
+    .replace(/\${personDying3}/g, personDying[3].name)
+    .replace(/\${personDying4}/g, personDying[4].name);
     return killString;
   }
   
@@ -1208,6 +1227,7 @@ function setNightStyleWithKiller(
 
 // Function to process a day iteration !!!where there's kiling!!!
 function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipant: Participant[], killer: Participant): void {
+  killer = randomDeadParticipant[0];
   console.log(`Processing day ${dayNumber}`);
   const currDay = document.getElementById(daysIDs[dayNumber - 1]);
 
@@ -1226,7 +1246,7 @@ function processDayInteractionWithKiller(dayNumber: number, randomDeadParticipan
 
 // Function to process a night iteration !!!where there's kiling!!!
 function processNightInteractionWithKiller(nightNumber: number, randomDeadParticipant: Participant[], killer: Participant): void {
-  
+  killer = randomDeadParticipant[0];
   console.log(`Processing night ${nightNumber}`);
   const currNight = document.getElementById(nightsIDs[nightNumber - 1]);
 
@@ -1402,7 +1422,7 @@ function runGameCycle() {
         } else {
           processNightWithMultipleKilled(Math.floor(i / 2) + 1, randomDeadParticipant, killer, 3);
         }
-      } else if (howManyKilled >= 19 && howManyKilled <= 20 && participantsRemaining.length > 4) {
+      } else if (howManyKilled === 19 && participantsRemaining.length > 4) {
         randomDeadParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 4);
         for(let i = 1; i <= randomDeadParticipant.length; i++) {
           participantsRemaining = participantsRemaining.filter(participant => participant !== randomDeadParticipant[i]);
@@ -1412,8 +1432,19 @@ function runGameCycle() {
         } else {
           processNightWithMultipleKilled(Math.floor(i / 2) + 1, randomDeadParticipant, killer, 4);
         }
+      } else if (howManyKilled === 20 && participantsRemaining.length > 5) {
+        randomDeadParticipant = getUniqueRandomElementsFromArray(participantsRemaining, 5);
+        for(let i = 1; i <= randomDeadParticipant.length; i++) {
+          participantsRemaining = participantsRemaining.filter(participant => participant !== randomDeadParticipant[i]);
+        }
+        if (i % 2 === 0) {  
+          processDayWithMultipleKilled(Math.floor(i / 2) + 1, randomDeadParticipant, killer, 5);
+        } else {
+          processNightWithMultipleKilled(Math.floor(i / 2) + 1, randomDeadParticipant, killer, 5);
+        }
       } else {
         console.log("didn't process well.");
+        --i;
         continue;
       }
 
