@@ -368,6 +368,7 @@ const THREE_PARTICIPANTS_INTERACTIONS = [
 ];
 // 4 participants interacting
 const FOUR_PARTICIPANTS_INTERACTIONS = [
+    // 1Kill2Steal
     "${participant1} joins the group of ${participant2}, ${participant3} and ${participant4}.",
     "${participant1} ditches the group of ${participant2}, ${participant3} and ${participant4}.",
     "${participant1}, ${participant2}, ${participant3} and ${participant4} start building a house.",
