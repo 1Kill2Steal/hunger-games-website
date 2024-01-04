@@ -1045,9 +1045,9 @@ function generateInteractionMessage(
 // This is the rng on whether you die on your own or kill someone else
 function determineIfKillingSomeoneOrDying(): boolean { 
   let killOrDie: Boolean;
-  // 69/420 (funny) is around 0.164285714286% to die
-  const CHANCE_TO_DIE = 69;
-  const CHANCE_TO_KILL = 420;
+  
+  const CHANCE_TO_DIE = 3;
+  const CHANCE_TO_KILL = 4;
 
   let result = Math.random();
 
