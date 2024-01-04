@@ -265,9 +265,15 @@ const PARTICIPANTS = [
         name: "piro",
         image: "../images/participants/participant51.png"
     },
+    {
+        id: "participant52",
+        name: "Martoxeno",
+        image: "../images/participants/participant52.png"
+    },
 ];
 // 1 participant interaction
 const ONE_PARTICIPANT_INTERACTIONS = [
+    "${participant1} tried to drift. Their car is a FWD and there's no drift on FWD 😠 ",
     // Rooftop (Raouka)
     "${participant1} tried enchanting a dirt block. nothing happened.",
     "${participant1} tried enchanting gunpowder, ending up with their tent in ashes.",
@@ -304,6 +310,7 @@ const ONE_PARTICIPANT_INTERACTIONS = [
 ];
 // 2 participants interacting
 const TWO_PARTICIPANTS_INTERACTIONS = [
+    "To our surprise, ${participant1} managed to drift a FWD, but his tires are all worn out. ${participant2} won the race with a better tire usage",
     // Emper
     "${participant1} and ${participant2} cuddle for warmth.",
     "${participant1} is chased by ${participant2}.",
@@ -343,6 +350,7 @@ const TWO_PARTICIPANTS_INTERACTIONS = [
 ];
 // 3 participants interacting
 const THREE_PARTICIPANTS_INTERACTIONS = [
+    "Fujiwara's apprentice ${participant1} showed up, but ${participant2} wasn't scared, till he won the entire thing and ${participant3} was recording it all",
     // Rooftop (Raouka)
     "${participant1} walked in on ${participant2} and ${participant3} doing insanely stupid stuff. ${participant1} joined them regardless.",
     "${participant1} found a skull. ${participant2} and ${participant3} were rattled.",
@@ -505,6 +513,7 @@ const FOUR_KILL_MESSAGE_TEMPLATES = [
 ];
 // `${personDying} ${waysToDie[x]}`
 const WAYS_TO_DIE_TEMPLATES = [
+    "${personDying} watched too much Initial D and committed Shingo Shoji style. (They crashed)",
     // Emper
     "${personDying} experienced kinetic energy attempting to scale a tree.",
     "${personDying} walks over a land mine.",
