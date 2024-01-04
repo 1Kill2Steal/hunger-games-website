@@ -548,6 +548,11 @@ const KILL_MESSAGE_TEMPLATES: string[] = [
 
 // "${killer} ${personDying2} ${personDying1}", comment exists for copy-paste reasons
 const TWO_KILL_MESSAGE_TEMPLATES: string[] = [
+  // Raouka (Rooftop)
+  "${killer} threw a live grenade. ${personDying1} and ${personDying2} thought it was fake, killing both of them in the explosion.",
+  "${killer} and ${personDying1} had a poisonous tea break. ${personDying2} unexpectedly joined in, ending with both of them dead.",
+  "${killer} tried healing ${personDying1} and ${personDying2} using hydro while fighting the cryo hypostasis. ",
+
   // 1Kill2Steal
   "${killer} did a double kill (${personDying1} ${personDying2})",
   "${killer} shot ${personDying2} but accidentally ended up killing ${personDying1} as well...",

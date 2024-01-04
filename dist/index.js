@@ -480,6 +480,10 @@ const KILL_MESSAGE_TEMPLATES = [
 ];
 // "${killer} ${personDying2} ${personDying1}", comment exists for copy-paste reasons
 const TWO_KILL_MESSAGE_TEMPLATES = [
+    // Raouka (Rooftop)
+    "${killer} threw a live grenade. ${personDying1} and ${personDying2} thought it was fake, killing both of them in the explosion.",
+    "${killer} and ${personDying1} had a poisonous tea break. ${personDying2} unexpectedly joined in, ending with both of them dead.",
+    "${killer} tried healing ${personDying1} and ${personDying2} using hydro while fighting the cryo hypostasis. ",
     // 1Kill2Steal
     "${killer} did a double kill (${personDying1} ${personDying2})",
     "${killer} shot ${personDying2} but accidentally ended up killing ${personDying1} as well...",
@@ -494,7 +498,7 @@ const THREE_KILL_MESSAGE_TEMPLATES = [
 // "${killer} ${personDying1} ${personDying2} ${personDying3} ${personDying4}",
 const FOUR_KILL_MESSAGE_TEMPLATES = [
     // 1Kill2Steal
-    "${killer} DID A TRIPPLE KILL!!! (${personDying1} ${personDying2} ${personDying3} ${personDying4})",
+    "${killer} DID A QUADRA KILL!!! (${personDying1} ${personDying2} ${personDying3} ${personDying4})",
     "${killer} decided to go rampage and killed ${personDying1}, ${personDying2}, ${personDying3} and ${personDying4}",
     "${killer} woke up and chose violence. (Killed: ${personDying1} ${personDying2} ${personDying3} ${personDying4})",
     "${killer} did a: QUADRA KILL! (Killed: ${personDying1} ${personDying2} ${personDying3} ${personDying4}) (sorry guys, penta kill is impossible here)",
