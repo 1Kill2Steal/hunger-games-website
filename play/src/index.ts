@@ -1078,7 +1078,7 @@ function generateRandomKillMessage(personDying: Participant[], killer: Participa
   if (killedCount === 1) {
     killString = getRandomElementFromArray(KILL_MESSAGE_TEMPLATES)
     .replace(/\${killer}/g, killer.name)
-    .replace(/\${personDying}/g, personDying[0].name);
+    .replace(/\${personDying}/g, personDying[1].name);
     return killString;
   }
   if (killedCount === 2) {
