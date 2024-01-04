@@ -566,7 +566,7 @@ const THREE_KILL_MESSAGE_TEMPLATES: string[] = [
 // "${killer} ${personDying1} ${personDying2} ${personDying3} ${personDying4}",
 const FOUR_KILL_MESSAGE_TEMPLATES: string[] = [
   // 1Kill2Steal
-  "${killer} DID A TRIPPLE KILL!!! (${personDying1} ${personDying2} ${personDying3} ${personDying4})",
+  "${killer} DID A QUADRA KILL!!! (${personDying1} ${personDying2} ${personDying3} ${personDying4})",
   "${killer} decided to go rampage and killed ${personDying1}, ${personDying2}, ${personDying3} and ${personDying4}",
   "${killer} woke up and chose violence. (Killed: ${personDying1} ${personDying2} ${personDying3} ${personDying4})",
   "${killer} did a: QUADRA KILL! (Killed: ${personDying1} ${personDying2} ${personDying3} ${personDying4}) (sorry guys, penta kill is impossible here)",
